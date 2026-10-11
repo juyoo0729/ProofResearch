@@ -1,0 +1,71 @@
+{
+  "SAMPLE_A": {
+    "submissions": {
+      "accessionNumber": ["9000000001-26-000001", "9000000001-25-000001"],
+      "form": ["10-K", "10-K"],
+      "filingDate": ["2026-02-15", "2025-02-15"],
+      "reportDate": ["2025-12-31", "2024-12-31"],
+      "primaryDocument": ["sample-a-2025.htm", "sample-a-2024.htm"]
+    },
+    "companyfacts": {
+      "cik": 9000000001,
+      "facts": {"us-gaap": {
+        "RevenueFromContractWithCustomerExcludingAssessedTax": {"units": {"USD": [
+          {"start": "2024-01-01", "end": "2024-12-31", "val": 100000000, "accn": "9000000001-25-000001", "filed": "2025-02-15", "form": "10-K"},
+          {"start": "2024-01-01", "end": "2024-12-31", "val": 100000000, "accn": "9000000001-26-000001", "filed": "2026-02-15", "form": "10-K"},
+          {"start": "2025-01-01", "end": "2025-12-31", "val": 125000000, "accn": "9000000001-26-000001", "filed": "2026-02-15", "form": "10-K"}
+        ]}},
+        "OperatingIncomeLoss": {"units": {"USD": [
+          {"start": "2024-01-01", "end": "2024-12-31", "val": 15000000, "accn": "9000000001-25-000001", "filed": "2025-02-15", "form": "10-K"},
+          {"start": "2025-01-01", "end": "2025-12-31", "val": 25000000, "accn": "9000000001-26-000001", "filed": "2026-02-15", "form": "10-K"}
+        ]}}
+      }}
+    }
+  },
+  "SAMPLE_B": {
+    "submissions": {
+      "accessionNumber": ["9000000002-26-000001", "9000000002-25-000001"],
+      "form": ["10-K", "10-K"],
+      "filingDate": ["2026-02-20", "2025-02-20"],
+      "reportDate": ["2025-12-31", "2024-12-31"],
+      "primaryDocument": ["sample-b-2025.htm", "sample-b-2024.htm"]
+    },
+    "companyfacts": {
+      "cik": 9000000002,
+      "facts": {"us-gaap": {
+        "RevenueFromContractWithCustomerExcludingAssessedTax": {"units": {"USD": [
+          {"start": "2024-01-01", "end": "2024-12-31", "val": 80000000, "accn": "9000000002-25-000001", "filed": "2025-02-20", "form": "10-K"},
+          {"start": "2024-01-01", "end": "2024-12-31", "val": 80000000, "accn": "9000000002-26-000001", "filed": "2026-02-20", "form": "10-K"},
+          {"start": "2025-01-01", "end": "2025-12-31", "val": 88000000, "accn": "9000000002-26-000001", "filed": "2026-02-20", "form": "10-K"}
+        ]}},
+        "OperatingIncomeLoss": {"units": {"USD": [
+          {"start": "2024-01-01", "end": "2024-12-31", "val": 8000000, "accn": "9000000002-25-000001", "filed": "2025-02-20", "form": "10-K"},
+          {"start": "2025-01-01", "end": "2025-12-31", "val": 11000000, "accn": "9000000002-26-000001", "filed": "2026-02-20", "form": "10-K"}
+        ]}}
+      }}
+    }
+  },
+  "SAMPLE_C": {
+    "submissions": {
+      "accessionNumber": ["9000000003-26-000001", "9000000003-25-000001"],
+      "form": ["10-K", "10-K"],
+      "filingDate": ["2026-02-25", "2025-02-25"],
+      "reportDate": ["2026-01-31", "2025-01-31"],
+      "primaryDocument": ["sample-c-2026.htm", "sample-c-2025.htm"]
+    },
+    "companyfacts": {
+      "cik": 9000000003,
+      "facts": {"us-gaap": {
+        "RevenueFromContractWithCustomerExcludingAssessedTax": {"units": {"USD": [
+          {"start": "2024-02-01", "end": "2025-01-31", "val": 200000000, "accn": "9000000003-25-000001", "filed": "2025-02-25", "form": "10-K"},
+          {"start": "2024-02-01", "end": "2025-01-31", "val": 200000000, "accn": "9000000003-26-000001", "filed": "2026-02-25", "form": "10-K"},
+          {"start": "2025-02-01", "end": "2026-01-31", "val": 220000000, "accn": "9000000003-26-000001", "filed": "2026-02-25", "form": "10-K"}
+        ]}},
+        "OperatingIncomeLoss": {"units": {"USD": [
+          {"start": "2024-02-01", "end": "2025-01-31", "val": 10000000, "accn": "9000000003-25-000001", "filed": "2025-02-25", "form": "10-K"},
+          {"start": "2025-02-01", "end": "2026-01-31", "val": 15400000, "accn": "9000000003-26-000001", "filed": "2026-02-25", "form": "10-K"}
+        ]}}
+      }}
+    }
+  }
+}

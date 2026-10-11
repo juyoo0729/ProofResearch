@@ -1,0 +1,24 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "proofresearch"
+version = "0.1.0"
+description = "Evidence-first SEC financial comparison baseline"
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+dependencies = ["pydantic>=2.10,<3", "streamlit>=1.45,<2"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10"]
+
+[project.scripts]
+proofresearch = "proofresearch.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/proofresearch"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

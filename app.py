@@ -1,0 +1,102 @@
+import os
+from datetime import date
+
+import streamlit as st
+from pydantic import ValidationError
+
+from proofresearch.models import COMPANIES, METRICS, SAMPLE_COMPANIES, ResearchRequest
+from proofresearch.report import comparison_rows, display_value, render_csv, render_html
+from proofresearch.sec import SecError, validate_user_agent
+from proofresearch.workflow import run_research
+
+
+st.set_page_config(page_title="ProofResearch | 공시 비교", page_icon="📑", layout="wide")
+st.html("""<style>
+.stMainBlockContainer{max-width:1200px;padding-top:2rem}
+h1{letter-spacing:-.045em}div[data-testid="stCaptionContainer"]{color:#405974}
+</style>""")
+st.caption("ProofResearch")
+st.title("기업 공시, 근거와 함께 비교하세요.")
+st.write("매출과 수익성을 살펴보고, 비교 조건이 다른 항목은 근거와 함께 확인합니다.")
+
+mode_label = st.radio("자료 선택", ["가상 예제", "SEC 실제 공시"], horizontal=True)
+mode = "sample" if mode_label == "가상 예제" else "sec"
+companies = SAMPLE_COMPANIES if mode == "sample" else COMPANIES
+user_agent = os.environ.get("SEC_USER_AGENT", "")
+ready = True
+if mode == "sample":
+    st.info("가상 기업과 합성 수치로 실행 흐름을 확인합니다. 예제 기업 C는 결산기간이 다릅니다.")
+else:
+    try:
+        validate_user_agent(user_agent)
+    except SecError:
+        ready = False
+        st.info("실제 조회를 준비 중입니다. 운영자 연락처를 설정한 뒤 사용할 수 있습니다. 지금은 가상 예제로 살펴보세요.")
+
+with st.form(f"research_{mode}"):
+    left, right = st.columns([3, 1])
+    with left:
+        tickers = st.multiselect("비교할 기업", list(companies), default=list(companies)[:2],
+                                format_func=lambda ticker: companies[ticker][0], max_selections=3)
+    with right:
+        as_of = st.date_input("분석 기준일", value=date(2026, 3, 1) if mode == "sample" else date.today(),
+                              min_value=date(1994, 1, 1), max_value=date.today())
+    st.caption("기준일 이전에 제출된 최근 2개 연차보고 기간을 사용합니다. 최신 기간의 4개 지표와 직전 기간의 매출·영업이익·이익률을 확인합니다.")
+    submitted = st.form_submit_button("비교 보고서 만들기", type="primary", disabled=not ready)
+
+if submitted:
+    st.session_state.pop("report", None)
+    try:
+        request = ResearchRequest(mode=mode, tickers=tickers, as_of=as_of)
+        with st.spinner("자료를 확인하고 기간·계정·계산식을 검사하고 있습니다..."):
+            st.session_state.report = run_research(request, user_agent=user_agent)
+    except (ValidationError, SecError) as error:
+        message = error.errors()[0]["msg"] if isinstance(error, ValidationError) else str(error)
+        st.error(f"보고서를 만들지 못했습니다. {message}")
+    except OSError:
+        st.error("데이터를 저장하거나 읽지 못했습니다. 프로젝트 폴더의 접근 권한과 디스크 공간을 확인하세요.")
+
+report = st.session_state.get("report")
+if report and report.request.mode == mode:
+    st.divider()
+    st.subheader("비교 보고서")
+    st.caption(f"적용 기준일 {report.request.as_of} | 기업 {', '.join(company.name for company in report.companies)}")
+    if report.request.tickers != tickers or report.request.as_of != as_of:
+        st.info("입력 조건이 바뀌었습니다. 새 조건을 적용하려면 보고서를 다시 만들어 주세요.")
+    if report.comparison.status == "PASS":
+        st.success("비교 조건 일치: " + report.comparison.reason)
+    else:
+        st.warning(report.comparison.reason)
+    st.dataframe(comparison_rows(report), hide_index=True, width="stretch")
+    st.caption("USD 원단위입니다. 직전 연도의 매출증가율은 전전기 자료가 대상 밖이므로 표시하지 않습니다.")
+    for warning in report.warnings:
+        st.caption(warning)
+    for company in report.companies:
+        for warning in company.warnings:
+            st.warning(f"{company.name}: {warning}")
+        for year in reversed(company.years):
+            with st.expander(f"{company.name} | 보고 종료일 {year.filing.report_date} | 근거 확인"):
+                st.write(f"제출일 {year.filing.filed} / {year.filing.form} / 공시 {year.filing.accession}")
+                for metric in year.metrics:
+                    st.markdown(f"**{METRICS[metric.name]}: {display_value(metric)}**")
+                    st.write(metric.reason)
+                    if metric.formula:
+                        st.code(metric.formula, language=None)
+                    for evidence in metric.evidence:
+                        st.caption(f"{evidence.start} ~ {evidence.end} | {evidence.tag} | {evidence.value} {evidence.unit}")
+                        if evidence.source_url:
+                            st.link_button("SEC 공시 원문 열기", evidence.source_url)
+    st.subheader("보고서 저장")
+    html_column, csv_column, evidence_column = st.columns(3)
+    with html_column:
+        st.download_button("HTML 보고서", render_html(report), "proofresearch-report.html", "text/html")
+    with csv_column:
+        st.download_button("CSV 비교표", render_csv(report), "proofresearch-comparison.csv", "text/csv")
+    with evidence_column:
+        st.download_button("근거·실행 기록", report.model_dump_json(indent=2), "proofresearch-evidence.json", "application/json")
+    with st.expander("수집 정보와 실행 이력"):
+        st.json({"snapshots": report.snapshots, "events": report.events})
+else:
+    st.subheader("무엇을 확인하나요?")
+    st.write("연차공시의 매출과 영업이익으로 영업이익률·매출증가율을 계산합니다. 기간이나 근거가 맞지 않으면 보류 사유를 보여줍니다.")
+    st.caption("현재는 수치 검산 시제품입니다. 기획서의 공시 문단 검색과 AI 해석은 후속 개발 단계입니다.")
