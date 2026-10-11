@@ -44,7 +44,9 @@ uv run proofresearch sec --tickers AMD INTC NVDA --as-of 2026-10-11
 uv run streamlit run app.py
 ```
 
-또는 `.env.example`을 `.env`로 복사해 값을 채우고 `uv run --env-file .env streamlit run app.py`로 실행합니다. 연락처는 ASCII 영문 형식의 이메일을 사용합니다. `.env`는 Git 추적 대상에서 제외됩니다. 현재 운영자 연락처가 미정이므로 **라이브 SEC 연결 검증은 아직 수행하지 않았습니다.**
+또는 `.env.example`을 `.env`로 복사해 값을 채우고 `uv run --env-file .env streamlit run app.py`로 실행합니다. 연락처는 ASCII 영문 형식의 이메일을 사용합니다. `.env`는 Git 추적 대상에서 제외됩니다.
+
+**2026-10-11 실제 연결 확인:** AMD·Intel·NVIDIA의 제출 이력과 Company Facts, 총 6개 API 응답을 라이브로 수집했습니다. Intel·NVIDIA의 계산은 규칙을 통과했고, AMD의 최신 선택 10-K/A에는 필요한 표준 계정 값이 없어 해당 기간 지표 4개를 보류했습니다. 이는 연결·구조화 데이터 검사 결과이며, 10-K HTML 원문 대조나 독립적인 정확도 평가 완료를 뜻하지 않습니다. 운영자 연락처는 로컬 `.env`에만 보관합니다.
 
 실제 조회는 서버 측에서 실행하며, API 키는 필요하지 않습니다. CIK와 응답의 기업 식별자도 대조합니다.
 
