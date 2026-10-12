@@ -4,6 +4,10 @@
 !uv.lock
 !README.md
 !app.py
+!ui/
+!ui/styles.css
+!.streamlit/
+!.streamlit/config.toml
 !src/
 !src/proofresearch/
 !src/proofresearch/*.py

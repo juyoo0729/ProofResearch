@@ -1,0 +1,59 @@
+:root {
+  --pr-ink: #173b43;
+  --pr-muted: #536a70;
+  --pr-line: #d6e1e3;
+  --pr-accent: #176a64;
+}
+.stApp { font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; }
+.stMainBlockContainer { max-width: 1240px; padding: 3.2rem 2.5rem 3rem; }
+[data-testid="stHeader"] { background: #f3f6f7; }
+[data-testid="stCaptionContainer"] { color: var(--pr-muted); opacity: 1; }
+.pr-brand { display: flex; justify-content: space-between; align-items: center; padding-bottom: .85rem; border-bottom: 1px solid var(--pr-line); }
+.pr-wordmark { display: flex; align-items: center; gap: .65rem; color: var(--pr-ink); font-size: 1.22rem; font-weight: 750; letter-spacing: -.04em; }
+.pr-mark { display: inline-grid; place-items: center; width: 30px; height: 34px; border-radius: 4px 11px 4px 4px; background: var(--pr-accent); color: white; font-size: 1.2rem; }
+.pr-purpose { color: var(--pr-muted); font-size: .8rem; }
+.pr-intro { display: flex; justify-content: space-between; align-items: center; gap: 2rem; padding: 1rem 0 .55rem; }
+.pr-intro h1 { color: var(--pr-ink); font-size: clamp(1.5rem, 2.4vw, 1.95rem); font-weight: 750; line-height: 1.4; letter-spacing: -.055em; padding: 0; margin: 0 0 .65rem; }
+.pr-intro p { color: var(--pr-muted); font-size: .9rem; line-height: 1.75; margin: 0; }
+.pr-intro h1, .pr-intro p { word-break: keep-all; overflow-wrap: break-word; }
+.pr-scope { flex-shrink: 0; border-left: 2px solid #90b8b0; padding-left: 1.2rem; }
+.pr-scope span { color: var(--pr-muted); font-size: .75rem; }
+.pr-scope p { color: var(--pr-ink); font-size: .95rem; line-height: 1.8; margin-top: .35rem; }
+[data-testid="stRadio"] [role="radiogroup"] { gap: .6rem; }
+[data-testid="stRadioOption"] { background: white; border: 1px solid var(--pr-line); border-radius: 6px; padding: .4rem .8rem; margin: 0; }
+[data-testid="stRadioOption"][data-selected="true"] { background: #e4f0ed; border-color: var(--pr-accent); }
+[data-testid="stAlert"] { border-radius: 6px; }
+[data-testid="stForm"] { background: white; border: 1px solid var(--pr-line); border-top: 3px solid var(--pr-accent); border-radius: 9px; padding: 1rem 1.4rem 1.2rem; }
+[data-testid="stForm"] [data-testid="stVerticalBlock"] { gap: .75rem; }
+h3 { color: var(--pr-ink); font-size: 1.2rem !important; font-weight: 700 !important; letter-spacing: -.025em; padding-top: .35rem !important; }
+[data-testid="stForm"] h3 { font-size: 1.05rem !important; padding-top: 0 !important; }
+[data-testid="stWidgetLabel"] p { color: var(--pr-ink); font-weight: 600; }
+[data-testid="stTextArea"] textarea { line-height: 1.65; }
+[data-testid="stFormSubmitButton"] button { min-height: 44px; border-radius: 6px; font-weight: 650; }
+[data-testid="stFormSubmitButton"] button p { font-weight: 650; }
+[data-testid="stTabs"] [role="tablist"] { gap: 1.8rem; border-bottom: 1px solid var(--pr-line); }
+[data-testid="stTabs"] [role="tab"] { min-height: 48px; color: var(--pr-muted); }
+[data-testid="stTabs"] [role="tab"][aria-selected="true"] { color: var(--pr-accent); }
+[data-testid="stTabs"] [role="tabpanel"] { padding-top: 1.25rem; }
+[data-testid="stDataFrame"] { border: 1px solid var(--pr-line); border-radius: 6px; background: white; }
+[data-testid="stExpander"] { background: white; border-radius: 6px; }
+[data-testid="stDownloadButton"] button { min-height: 44px; border-color: #a9c2c2; border-radius: 6px; color: var(--pr-ink); background: white; }
+[data-testid="stDownloadButton"] button:hover { border-color: var(--pr-accent); background: #e4f0ed; }
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid #378a85 !important; outline-offset: 3px; }
+.pr-empty { text-align: center; padding: 2rem 1rem 1.6rem; }
+.pr-empty h2 { font-size: 1.05rem; font-weight: 650; color: var(--pr-ink); margin: 0 0 .5rem; padding: 0; }
+.pr-empty p { color: var(--pr-muted); font-size: .85rem; margin-bottom: 1.15rem; }
+.pr-reading-order { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 1.5rem; color: var(--pr-muted); font-size: .75rem; }
+.pr-reading-order span + span { border-left: 1px solid var(--pr-line); padding-left: 1.5rem; }
+@media (max-width: 700px) {
+  .stMainBlockContainer { padding: 3.3rem 1rem 2rem; }
+  .pr-brand { padding-bottom: 1rem; }
+  .pr-purpose { display: none; }
+  .pr-intro { padding: 1.2rem 0 .7rem; }
+  .pr-scope { display: none; }
+  .pr-intro p { font-size: .82rem; }
+  [data-testid="stForm"] { padding: 1rem; }
+  [data-testid="stTabs"] [role="tablist"] { gap: 1.2rem; }
+  .pr-reading-order { gap: .6rem 1rem; }
+  .pr-reading-order span + span { padding-left: 1rem; }
+}

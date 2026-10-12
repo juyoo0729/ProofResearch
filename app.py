@@ -1,5 +1,6 @@
 import os
 from datetime import date
+from pathlib import Path
 
 import streamlit as st
 from pydantic import ValidationError
@@ -13,13 +14,19 @@ from proofresearch.llm import AgentError, Settings
 
 
 st.set_page_config(page_title="ProofResearch | 공시 비교", page_icon="📑", layout="wide")
-st.html("""<style>
-.stMainBlockContainer{max-width:1200px;padding-top:2rem}
-h1{letter-spacing:-.045em}div[data-testid="stCaptionContainer"]{color:#405974}
-</style>""")
-st.caption("ProofResearch")
-st.title("기업 공시, 근거와 함께 비교하세요.")
-st.write("매출과 수익성을 살펴보고, 비교 조건이 다른 항목은 근거와 함께 확인합니다.")
+st.html(f"<style>{(Path(__file__).parent / 'ui' / 'styles.css').read_text(encoding='utf-8')}</style>")
+st.html("""
+<header class="pr-brand">
+  <div class="pr-wordmark"><span class="pr-mark" aria-hidden="true">P</span>ProofResearch</div>
+  <span class="pr-purpose">공시 리서치 워크스페이스</span>
+</header>
+<section class="pr-intro" aria-labelledby="pr-title">
+  <div><h1 id="pr-title">공시를 비교하고, 근거를 확인하세요.</h1>
+  <p>공시를 나란히 살펴보고, 비교할 수 있는 값과 보류할 항목을 구분합니다.</p></div>
+  <div class="pr-scope"><span>연차공시에서 확인할 지표</span>
+  <p>매출 · 영업이익<br>영업이익률 · 매출증가율</p></div>
+</section>
+""")
 
 mode_label = st.radio("자료 선택", ["가상 예제", "SEC 실제 공시"], horizontal=True)
 mode = "sample" if mode_label == "가상 예제" else "sec"
@@ -27,7 +34,7 @@ companies = SAMPLE_COMPANIES if mode == "sample" else COMPANIES
 user_agent = os.environ.get("SEC_USER_AGENT", "")
 ready = True
 if mode == "sample":
-    st.info("가상 기업과 합성 수치로 실행 흐름을 확인합니다. 예제 기업 C는 결산기간이 다릅니다.")
+    st.info("가상 기업의 합성 자료입니다. 예제 기업 C는 결산기간이 달라 비교가 보류됩니다.")
 else:
     try:
         validate_user_agent(user_agent)
@@ -36,6 +43,7 @@ else:
         st.info("실제 조회를 준비 중입니다. 운영자 연락처를 설정한 뒤 사용할 수 있습니다. 지금은 가상 예제로 살펴보세요.")
 
 with st.form(f"research_{mode}"):
+    st.subheader("비교 조건")
     left, right = st.columns([3, 1])
     with left:
         tickers = st.multiselect("비교할 기업", list(companies), default=list(companies)[:2],
@@ -43,8 +51,9 @@ with st.form(f"research_{mode}"):
     with right:
         as_of = st.date_input("분석 기준일", value=date(2026, 3, 1) if mode == "sample" else date.today(),
                               min_value=date(1994, 1, 1), max_value=date.today())
-    st.caption("기준일 이전에 제출된 최근 2개 연차보고 기간에서 각각 4개 지표를 확인합니다. 증가율은 해당 공시에 함께 보고된 전기 매출로 계산합니다.")
-    query = st.text_area("확인하고 싶은 내용", value=ResearchRequest.model_fields["query"].default, max_chars=1000)
+    st.caption("기준일 이전 최근 2개 연차기간을 비교합니다. 증가율은 같은 공시에 실린 전기 매출로 계산합니다.")
+    query = st.text_area("확인하고 싶은 내용", value=ResearchRequest.model_fields["query"].default,
+                         max_chars=1000, height=75)
     use_agent = False
     if mode == "sec":
         try:
@@ -53,7 +62,7 @@ with st.form(f"research_{mode}"):
             st.caption(f"AI 분석은 요청당 최대 {settings.per_request_krw:,.0f}원, 전체 실험 {settings.total_krw:,.0f}원 한도 안에서 실행합니다.")
         except AgentError:
             st.caption("현재는 원문 표 검산을 사용할 수 있습니다. AI 분석에는 운영자의 키·모델·비용 한도 설정이 필요합니다.")
-    submitted = st.form_submit_button("비교 보고서 만들기", type="primary", disabled=not ready)
+    submitted = st.form_submit_button("비교 보고서 만들기", type="primary", disabled=not ready, width="stretch")
 
 if submitted:
     st.session_state.pop("report", None)
@@ -78,56 +87,64 @@ if report and report.request.mode == mode:
         st.success("비교 조건 일치: " + report.comparison.reason)
     else:
         st.warning(report.comparison.reason)
-    st.dataframe(comparison_rows(report), hide_index=True, width="stretch")
-    st.caption("USD 원단위입니다. 각 기간의 증가율은 같은 공시의 비교 수치로 계산하며, 전기 근거가 없으면 보류합니다.")
     for warning in report.warnings:
         st.caption(warning)
-    st.subheader("수치 해석")
-    for text in financial_interpretations(report):
-        st.write(text)
-    if report.agent:
-        st.caption(f"AI 실행: {report.agent.get('status')} / {report.agent.get('stop_reason', '')}")
-    if report.narratives:
-        st.subheader("사업 위험 설명 · AI 초안")
-        by_id = {p.id: p for p in report.paragraphs}
-        for claim in report.narratives:
-            paragraph = by_id[claim.evidence_id]
-            st.write(f"{claim.ticker}: {claim.text}")
-            with st.expander(f"{claim.ticker} | 인용 원문 확인"):
-                st.text(claim.quote)
-                st.caption(f"{paragraph.filing.accession} | {paragraph.section} | {paragraph.xpath} | 문자 {paragraph.start_offset}~{paragraph.end_offset}")
-                st.link_button("원문 문단 열기", paragraph.source_url)
-    for company in report.companies:
-        for warning in company.warnings:
-            st.warning(f"{company.name}: {warning}")
-        for year in reversed(company.years):
-            with st.expander(f"{company.name} | 보고 종료일 {year.filing.report_date} | 근거 확인"):
-                st.write(f"제출일 {year.filing.filed} / {year.filing.form} / 공시 {year.filing.accession}")
-                if year.amendment:
-                    st.info(year.amendment.scope)
-                    st.link_button("수정 공시 설명 확인", year.amendment.filing.url())
-                for metric in year.metrics:
-                    st.markdown(f"**{METRICS[metric.name]}: {display_value(metric)}**")
-                    st.write(metric.reason)
-                    if metric.formula:
-                        st.code(metric.formula, language=None)
-                    for evidence in metric.evidence:
-                        st.caption(f"{evidence.start} ~ {evidence.end} | {evidence.tag} | {evidence.value} {evidence.unit}")
-                        if location := evidence.source_location:
-                            st.caption(f"원문 표 {location.table}, 행 {location.row}, 셀 {location.column} | {location.row_label} | 표시값 {location.displayed_text}, 배율 10^{location.scale}, 부호 {location.sign}")
-                        if evidence.source_url:
-                            st.link_button("SEC 공시 원문 열기", evidence.source_url)
+    summary_tab, evidence_tab, trace_tab = st.tabs(["비교 요약", "원문 근거", "실행 기록"])
+    with summary_tab:
+        st.dataframe(comparison_rows(report), hide_index=True, width="stretch")
+        st.caption("USD 원단위입니다. 각 기간의 증가율은 같은 공시의 비교 수치로 계산하며, 전기 근거가 없으면 보류합니다.")
+        st.subheader("수치 해석")
+        for text in financial_interpretations(report):
+            st.write(text)
+        if report.narratives:
+            st.subheader("사업 위험 설명 · AI 초안")
+            by_id = {p.id: p for p in report.paragraphs}
+            for claim in report.narratives:
+                paragraph = by_id[claim.evidence_id]
+                st.write(f"{claim.ticker}: {claim.text}")
+                with st.expander(f"{claim.ticker} | 인용 원문 확인"):
+                    st.text(claim.quote)
+                    st.caption(f"{paragraph.filing.accession} | {paragraph.section} | {paragraph.xpath} | 문자 {paragraph.start_offset}~{paragraph.end_offset}")
+                    st.link_button("원문 문단 열기", paragraph.source_url)
+    with evidence_tab:
+        st.caption("기업과 보고기간을 선택해 계산식과 공시 원문 위치를 확인하세요.")
+        for company in report.companies:
+            for warning in company.warnings:
+                st.warning(f"{company.name}: {warning}")
+            for year in reversed(company.years):
+                with st.expander(f"{company.name} | 보고 종료일 {year.filing.report_date} | 근거 확인"):
+                    st.write(f"제출일 {year.filing.filed} / {year.filing.form} / 공시 {year.filing.accession}")
+                    if year.amendment:
+                        st.info(year.amendment.scope)
+                        st.link_button("수정 공시 설명 확인", year.amendment.filing.url())
+                    for metric in year.metrics:
+                        st.markdown(f"**{METRICS[metric.name]}: {display_value(metric)}**")
+                        st.write(metric.reason)
+                        if metric.formula:
+                            st.code(metric.formula, language=None)
+                        for evidence in metric.evidence:
+                            st.caption(f"{evidence.start} ~ {evidence.end} | {evidence.tag} | {evidence.value} {evidence.unit}")
+                            if location := evidence.source_location:
+                                st.caption(f"원문 표 {location.table}, 행 {location.row}, 셀 {location.column} | {location.row_label} | 표시값 {location.displayed_text}, 배율 10^{location.scale}, 부호 {location.sign}")
+                            if evidence.source_url:
+                                st.link_button("SEC 공시 원문 열기", evidence.source_url)
+    with trace_tab:
+        if report.agent:
+            st.caption(f"AI 실행: {report.agent.get('status')} / {report.agent.get('stop_reason', '')}")
+        st.json({"snapshots": report.snapshots, "agent": report.agent, "events": report.events})
+    st.divider()
     st.subheader("보고서 저장")
     html_column, csv_column, evidence_column = st.columns(3)
     with html_column:
-        st.download_button("HTML 보고서", render_html(report), "proofresearch-report.html", "text/html")
+        st.download_button("HTML 보고서", render_html(report), "proofresearch-report.html", "text/html", width="stretch")
     with csv_column:
-        st.download_button("CSV 비교표", render_csv(report), "proofresearch-comparison.csv", "text/csv")
+        st.download_button("CSV 비교표", render_csv(report), "proofresearch-comparison.csv", "text/csv", width="stretch")
     with evidence_column:
-        st.download_button("근거·실행 기록", report.model_dump_json(indent=2), "proofresearch-evidence.json", "application/json")
-    with st.expander("수집 정보와 실행 이력"):
-        st.json({"snapshots": report.snapshots, "agent": report.agent, "events": report.events})
+        st.download_button("근거·실행 기록", report.model_dump_json(indent=2), "proofresearch-evidence.json", "application/json", width="stretch")
 else:
-    st.subheader("무엇을 확인하나요?")
-    st.write("연차공시의 매출과 영업이익으로 영업이익률·매출증가율을 계산합니다. 기간이나 근거가 맞지 않으면 보류 사유를 보여줍니다.")
-    st.caption("실제 SEC 모드에서는 원문 표 대조와 공시 문단 검색을 연결합니다. 독립 정확도 평가는 진행 중입니다.")
+    st.html("""<section class="pr-empty" aria-labelledby="pr-empty-title">
+    <h2 id="pr-empty-title">비교 보고서가 여기에 표시됩니다.</h2>
+    <p>기업과 기준일을 선택하고 보고서를 만들어 보세요.</p>
+    <div class="pr-reading-order"><span>재무 수치 비교</span><span>공시 원문 확인</span><span>보류 사유와 기록 저장</span></div>
+    </section>""")
+st.caption("ProofResearch는 리서치 검토를 돕습니다. 계산 규칙 통과는 독립적인 정확도 검증을 뜻하지 않습니다.")

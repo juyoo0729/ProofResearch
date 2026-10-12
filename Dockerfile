@@ -6,6 +6,8 @@ ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 UV_LINK_MODE=copy \
 COPY pyproject.toml uv.lock README.md ./
 COPY src ./src
 COPY app.py ./
+COPY ui ./ui
+COPY .streamlit/config.toml ./.streamlit/config.toml
 RUN uv sync --frozen --no-dev --no-editable \
     && useradd --create-home --uid 10001 researcher \
     && mkdir -p /app/.cache && chown -R researcher:researcher /app
