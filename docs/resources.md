@@ -1,6 +1,6 @@
 # 데이터·모델·오픈소스·AI 활용 기록
 
-확인일: 2026-10-12. 실행 버전은 `uv.lock`, 평가의 코드·원문 해시는 `evaluation/freeze.json`과 `evaluation/corpus.json`으로 고정한다.
+확인일: 2026-10-12. 의존성 버전은 `uv.lock`, v1 평가 당시의 코드·원문 해시는 `evaluation/freeze.json`과 `evaluation/corpus.json`으로 고정한다. 이후 제품 수정과 구분하며 [v1 보존본에서 재현](../evaluation/README.md#오류-수정-이후-v1-재현)한다.
 
 | 자원 | 사용 범위 | 출처·확인 |
 | --- | --- | --- |

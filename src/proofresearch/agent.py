@@ -188,7 +188,9 @@ def run_loop(request, settings, user_agent, cache_path, ledger, limits, run_id, 
                         paragraph = found.get(claim.evidence_id)
                         if not paragraph or paragraph.ticker != claim.ticker or claim.quote not in paragraph.text:
                             raise ValueError("인용 ID·기업·정확한 원문 구절이 검색 결과와 일치하지 않습니다.")
-                        if re.search(r"[0-9%$]", claim.text):
+                        # shortcut: allow only common particles after 제3자; extend with regression cases for other forms.
+                        qualitative_text = re.sub(r"\b제3자(?:가|는|를|와|의|에|에게|에서|로|도|만)?\b", "제삼자", claim.text)
+                        if re.search(r"[0-9%$]", qualitative_text):
                             raise ValueError("정성 설명에 수치를 생성하지 마세요. 검증된 재무 표를 사용합니다.")
                     report.narratives = args.claims
                     report.warnings.extend(args.holds)

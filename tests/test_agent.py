@@ -113,3 +113,39 @@ def test_numeric_only_request_can_finish_without_irrelevant_narrative_warning(tm
     assert final.agent['status']=='completed' and final.agent['counts']['llm']==2
     assert final.companies[0].years[-1].metrics[2].status=='PASS'
     assert not any('AI 사업 위험 설명을 보류' in text for text in final.warnings)
+
+
+@pytest.mark.parametrize("text, claim_changes, accepted", [
+    ("인텔은 고객 집중과 유통업체 및 제3자 활용을 판매 관련 위험으로 꼽았습니다.", {}, True),
+    ("제3자의 유통 활동에 의존합니다.", {}, True),
+    ("제3자와 협력해 제품을 판매합니다.", {}, True),
+    ("제3자에게 유통을 맡깁니다.", {}, True),
+    ("유통업체 3곳에 의존합니다.", {}, False),
+    ("유통업체 비중은 30%입니다.", {}, False),
+    ("유통업체에 $ 비용을 지불합니다.", {}, False),
+    ("제3자산을 매각합니다.", {}, False),
+    ("제3자에게 매출의 30%를 의존합니다.", {}, False),
+    ("제3자의 유통 활동에 의존합니다.", {"evidence_id": "invented"}, False),
+    ("제3자의 유통 활동에 의존합니다.", {"ticker": "INTC"}, False),
+    ("제3자의 유통 활동에 의존합니다.", {"quote": "This quotation was not in the retrieved evidence."}, False),
+])
+def test_third_party_term_preserves_numeric_and_citation_guards(tmp_path, monkeypatch, report, text, claim_changes, accepted):
+    filing = report.companies[0].years[-1].filing
+    source = "Sales-related risks include customer concentration and the use of distributors and other third parties."
+    paragraph = Paragraph(id="p1", ticker="SAMPLE_A", filing=filing, section="Risk Factors", text=source,
+        xpath="/html/body/p[1]", start_offset=0, end_offset=len(source), document_sha256="a"*64,
+        source_url="https://www.sec.gov/")
+    monkeypatch.setattr(agent, "build_index", lambda *a: SourceIndex([paragraph]))
+    claim = {"ticker": "SAMPLE_A", "text": text, "evidence_id": "p1", "quote": source, **claim_changes}
+    actions = [("research_financials", finance_args()),
+        ("search_original", {"reason": "판매 위험 근거 검색", "query": "sales distributors",
+            "tickers": ["SAMPLE_A"], "period": "latest"}),
+        ("finish_report", {"stop_reason": "관련 원문 확보", "claims": [claim], "holds": []})]
+    final, _ = run_fake(tmp_path, monkeypatch, actions, report)
+    if accepted:
+        assert final.agent["status"] == "completed" and final.agent["counts"]["llm"] == 3
+        assert [claim.model_dump() for claim in final.narratives] == [claim]
+    else:
+        assert final.narratives == [] and final.agent["status"] == "limited"
+        reason = "인용 ID·기업·정확한 원문 구절" if claim_changes else "정성 설명에 수치를 생성하지 마세요"
+        assert any(reason in event["message"] for event in final.events)
