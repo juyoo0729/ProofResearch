@@ -1,4 +1,5 @@
 import os
+import sqlite3
 from datetime import date
 from pathlib import Path
 
@@ -53,7 +54,7 @@ with st.form(f"research_{mode}"):
                               min_value=date(1994, 1, 1), max_value=date.today())
     st.caption("기준일 이전 최근 2개 연차기간을 비교합니다. 증가율은 같은 공시에 실린 전기 매출로 계산합니다.")
     query = st.text_area("확인하고 싶은 내용", value=ResearchRequest.model_fields["query"].default,
-                         max_chars=1000, height=75)
+                         max_chars=1000, height=75).strip()
     use_agent = False
     if mode == "sec":
         try:
@@ -71,10 +72,18 @@ if submitted:
         with st.spinner("자료를 확인하고 기간·계정·계산식을 검사하고 있습니다..."):
             st.session_state.report = (run_agent if use_agent else run_research)(request, user_agent=user_agent)
     except (ValidationError, SecError, AgentError) as error:
-        message = error.errors()[0]["msg"] if isinstance(error, ValidationError) else str(error)
+        if isinstance(error, ValidationError):
+            issue = error.errors()[0]
+            message = {
+                ("tickers",): "비교할 기업을 1~3개 선택하세요.",
+                ("as_of",): "분석 기준일을 1994년 이후부터 오늘까지 선택하세요.",
+                ("query",): "확인하고 싶은 내용을 입력하세요. 공백만으로는 분석할 수 없습니다.",
+            }.get(issue["loc"], issue["msg"])
+        else:
+            message = str(error)
         st.error(f"보고서를 만들지 못했습니다. {message}")
-    except OSError:
-        st.error("데이터를 저장하거나 읽지 못했습니다. 프로젝트 폴더의 접근 권한과 디스크 공간을 확인하세요.")
+    except (OSError, sqlite3.DatabaseError):
+        st.error("데이터 저장소를 읽거나 쓰지 못했습니다. 폴더 권한·디스크 공간과 저장소 상태를 확인한 뒤 다시 시도하세요.")
 
 report = st.session_state.get("report")
 if report and report.request.mode == mode:
