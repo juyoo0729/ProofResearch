@@ -27,6 +27,23 @@ def comparison_rows(report: RunReport) -> list[dict]:
     return rows
 
 
+def financial_interpretations(report: RunReport) -> list[str]:
+    result = []
+    for company in report.companies:
+        if not company.years:
+            continue
+        year = company.years[-1]
+        metrics = {m.name: m for m in year.metrics}
+        parts = []
+        for name in ("operating_margin", "revenue_growth"):
+            metric = metrics.get(name)
+            if metric:
+                parts.append(f"{METRICS[name]}은 {display_value(metric)}입니다." if metric.status == "PASS"
+                             else f"{METRICS[name]}은 근거 부족으로 보류했습니다.")
+        result.append(f"{company.name}의 {year.filing.report_date} 종료 기간: " + " ".join(parts))
+    return result
+
+
 def csv_cell(value):
     if isinstance(value, str) and value.lstrip().startswith(("=", "+", "-", "@")):
         return "'" + value
@@ -37,11 +54,12 @@ def render_csv(report: RunReport) -> bytes:
     stream = io.StringIO(newline="")
     writer = csv.writer(stream)
     writer.writerow(["mode", "as_of", "ticker", "company", "period_end", "metric", "value", "unit",
-                     "status", "reason", "formula", "filing", "evidence_ids", "source_urls"])
+                     "status", "reason", "formula", "filing", "evidence_ids", "source_urls",
+                     "source_locations", "amendment", "amendment_scope"])
     for company in report.companies:
         if not company.years:
             writer.writerow([csv_cell(value) for value in [report.request.mode, str(report.request.as_of),
-                company.ticker, company.name, "", "", "", "", "HOLD", "; ".join(company.warnings), "", "", "", ""]])
+                company.ticker, company.name, "", "", "", "", "HOLD", "; ".join(company.warnings), "", "", "", "", "", "", ""]])
         for year in company.years:
             for metric in year.metrics:
                 writer.writerow([csv_cell(value) for value in [
@@ -51,6 +69,10 @@ def render_csv(report: RunReport) -> bytes:
                     metric.reason, metric.formula or "", year.filing.accession,
                     ";".join(item.id for item in metric.evidence),
                     ";".join(dict.fromkeys(item.source_url for item in metric.evidence if item.source_url)),
+                    json.dumps({item.id: item.source_location.model_dump() for item in metric.evidence
+                                if item.source_location}, ensure_ascii=False),
+                    year.amendment.filing.accession if year.amendment else "",
+                    year.amendment.scope if year.amendment else "",
                 ]])
     return stream.getvalue().encode("utf-8-sig")
 
@@ -67,6 +89,7 @@ main{max-width:1120px;margin:auto;padding:36px;background:white}h1{font-size:32p
 .metric{border-top:1px solid #ccd9e8;padding:12px 0}code{overflow-wrap:anywhere}small{color:#405974}li{margin-bottom:8px}@media(max-width:640px){main{padding:20px}h1{font-size:26px}}@media print{body{background:white}main{padding:0}.scroll{overflow:visible}table{font-size:10px}td,th{padding:5px}a{color:inherit}}
 </style></head><body><main><p>ProofResearch</p><h1>공시 근거를 함께 읽는 기업 비교</h1>"""]
     pieces.append(f"<p>기준일 {e(report.request.as_of)} / 실행 {e(report.run_id)}<br>작성 시각 {e(report.created_at.isoformat())}</p>")
+    pieces.append(f"<p>질의: {e(report.request.query)}</p>")
     if sample:
         pieces.append('<p class="notice"><strong>가상 예제</strong> — 모든 기업과 수치는 기능 확인용 합성 데이터입니다. 실제 공시나 투자정보가 아닙니다.</p>')
     comparison_class = "notice pass" if report.comparison.status == "PASS" else "notice"
@@ -87,13 +110,26 @@ main{max-width:1120px;margin:auto;padding:36px;background:white}h1{font-size:32p
                     mi, metric = metrics[name]
                     pieces.append(f'<td><a href="#m{ci}-{yi}-{mi}">{e(display_value(metric))}</a></td>')
             pieces.append("</tr>")
-    pieces.append("</tbody></table></div><p><small>직전 연도의 증가율은 전전기 공시가 대상 밖이므로 표시하지 않습니다. USD 원단위, 비율은 소수 둘째 자리 표시입니다.</small></p><h2>검토 근거</h2>")
+    pieces.append("</tbody></table></div><p><small>직전 연도의 증가율은 전전기 공시가 대상 밖이므로 표시하지 않습니다. USD 원단위, 비율은 소수 둘째 자리 표시입니다.</small></p><h2>수치 해석</h2>")
+    pieces.extend(f"<p>{e(text)}</p>" for text in financial_interpretations(report))
+    if report.agent:
+        pieces.append(f"<p>AI 실행 상태: {e(report.agent.get('status'))} / {e(report.agent.get('stop_reason', ''))}</p>")
+    if report.narratives:
+        pieces.append("<h2>사업 위험 설명 · AI 초안</h2><p>원문 인용과 함께 검토하세요. 의미 타당성은 독립 평가 전입니다.</p>")
+        by_id = {p.id: p for p in report.paragraphs}
+        for claim in report.narratives:
+            paragraph = by_id[claim.evidence_id]
+            pieces.append(f'<h3>{e(claim.ticker)}</h3><p>{e(claim.text)}</p><blockquote>{e(claim.quote)}</blockquote><p><a href="{e(paragraph.source_url)}">SEC 원문 문단 확인</a> / {e(paragraph.section)}<br>공시 {e(paragraph.filing.accession)} / 위치 {e(paragraph.xpath)} / 본문 문자 {paragraph.start_offset}~{paragraph.end_offset}<br><small>문서 SHA-256 {e(paragraph.document_sha256)}</small></p>')
+    pieces.append("<h2>검토 근거</h2>")
     for ci, company in enumerate(report.companies):
         pieces.append(f"<h3>{e(company.name)} ({e(company.ticker)})</h3>")
         for warning in company.warnings:
             pieces.append(f'<p class="notice">보류: {e(warning)}</p>')
         for yi, year in enumerate(company.years):
             pieces.append(f"<h4>보고 종료일 {e(year.filing.report_date)} / 제출일 {e(year.filing.filed)} / {e(year.filing.form)}</h4>")
+            if year.amendment:
+                note = year.amendment
+                pieces.append(f'<p class="notice">수정 공시 {e(note.filing.accession)} / 제출 {e(note.filing.filed)}<br>{e(note.scope)}<br><a href="{e(note.filing.url())}">수정 공시 설명 확인</a><br>원문 위치 {e(note.note_xpath)} / 검토 {e(note.reviewed_on)}</p>')
             for mi, metric in enumerate(year.metrics):
                 pieces.append(f'<section class="metric" id="m{ci}-{yi}-{mi}"><strong>{e(METRICS[metric.name])}: {e(display_value(metric))}</strong><p>{e(metric.reason)}</p>')
                 if metric.formula:
@@ -102,14 +138,18 @@ main{max-width:1120px;margin:auto;padding:36px;background:white}h1{font-size:32p
                     pieces.append(f"<p>근거 {e(evidence.id)}: {e(evidence.start)} ~ {e(evidence.end)}<br><code>{e(evidence.tag)}</code> = {e(evidence.value)} {e(evidence.unit)}<br>공시 {e(evidence.filing.accession)} / 제출 {e(evidence.filing.filed)}")
                     if evidence.source_url:
                         pieces.append(f'<br><a href="{e(evidence.source_url)}">SEC 공시 원문 열기</a>')
+                    if location := evidence.source_location:
+                        pieces.append(f'<br>원문 표 {location.table}, 행 {location.row}, 셀 {location.column}: {e(location.row_label)}<br>표시값 {e(location.displayed_text)} / 배율 10^{location.scale} / 부호 {e(location.sign)}<br><small>위치 {e(location.xpath)}<br>문서 SHA-256 {e(location.document_sha256)}</small>')
                     pieces.append("</p>")
                 pieces.append("</section>")
     pieces.append("<h2>데이터 기록</h2><ul>")
     for snapshot in report.snapshots:
-        pieces.append(f"<li>{e(snapshot['source'])} / {e(snapshot['retrieved_at'])}<br><code>{e(snapshot['sha256'])}</code></li>")
+        pieces.append(f"<li>{e(snapshot['source'])} / {e(snapshot['retrieved_at'])}<br>{e(snapshot.get('url') or '합성 예제')}<br><code>{e(snapshot['sha256'])}</code></li>")
     pieces.append("</ul><h2>실행 이력</h2><ol>")
     for event in report.events:
         pieces.append(f"<li>{e(event['message'])} ({e(event['elapsed_seconds'])}초)</li>")
+    if report.agent:
+        pieces.append(f"</ol><h2>호출·비용 기록</h2><pre>{e(json.dumps(report.agent, ensure_ascii=False, indent=2))}</pre><ol>")
     pieces.append("</ol></main></body></html>")
     return "".join(pieces)
 

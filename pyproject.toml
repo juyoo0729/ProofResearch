@@ -8,7 +8,11 @@ version = "0.1.0"
 description = "Evidence-first SEC financial comparison baseline"
 readme = "README.md"
 requires-python = ">=3.12,<3.14"
-dependencies = ["pydantic>=2.10,<3", "streamlit>=1.45,<2"]
+dependencies = [
+    "lxml>=6,<7",
+    "pydantic>=2.10,<3",
+    "streamlit>=1.45,<2",
+]
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<10"]

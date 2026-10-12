@@ -32,6 +32,7 @@ class ResearchRequest(Model):
     mode: Literal["sample", "sec"] = "sample"
     tickers: list[str] = Field(min_length=1, max_length=3)
     as_of: date
+    query: str = Field(default="매출과 수익성의 변화, 비교 제약과 주요 사업 위험을 근거와 함께 설명해 주세요.", min_length=1, max_length=1000)
 
     @field_validator("tickers")
     @classmethod
@@ -82,6 +83,21 @@ class Evidence(Model):
     filing: Filing
     source_url: str | None
     sample: bool
+    source_location: "SourceLocation | None" = None
+
+
+class SourceLocation(Model):
+    document_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
+    xpath: str
+    element_id: str | None
+    table: int = Field(ge=1)
+    row: int = Field(ge=1)
+    column: int = Field(ge=1)
+    row_label: str
+    displayed_text: str
+    cell_text: str
+    scale: int
+    sign: str
 
 
 class Metric(Model):
@@ -94,9 +110,18 @@ class Metric(Model):
     evidence: list[Evidence] = Field(default_factory=list)
 
 
+class AmendmentNote(Model):
+    filing: Filing
+    document_sha256: str
+    note_xpath: str
+    scope: str
+    reviewed_on: date
+
+
 class YearResult(Model):
     filing: Filing
     metrics: list[Metric]
+    amendment: AmendmentNote | None = None
 
 
 class CompanyResult(Model):
@@ -111,6 +136,26 @@ class Comparison(Model):
     reason: str
 
 
+class Paragraph(Model):
+    id: str
+    ticker: str
+    filing: Filing
+    section: str
+    text: str
+    xpath: str
+    start_offset: int
+    end_offset: int
+    document_sha256: str
+    source_url: str
+
+
+class NarrativeClaim(Model):
+    ticker: str
+    text: str = Field(max_length=600)
+    evidence_id: str
+    quote: str = Field(min_length=20, max_length=350)
+
+
 class RunReport(Model):
     run_id: str
     created_at: datetime
@@ -120,3 +165,6 @@ class RunReport(Model):
     snapshots: list[dict]
     events: list[dict]
     warnings: list[str]
+    paragraphs: list[Paragraph] = Field(default_factory=list)
+    narratives: list[NarrativeClaim] = Field(default_factory=list)
+    agent: dict = Field(default_factory=dict)

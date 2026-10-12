@@ -111,7 +111,35 @@ def test_invalid_json_is_not_cached(client, monkeypatch):
 
 
 def test_request_budget_stops_new_connections(client, monkeypatch):
-    client.requests = 12
+    client.requests = 24
     monkeypatch.setattr(client.opener, "open", lambda *a, **kw: pytest.fail("network call after limit"))
     with pytest.raises(SecError, match="한도"):
         client.fetch(URL)
+
+
+ARCHIVE = "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm"
+
+
+def test_archive_html_cache_and_exact_response_address(client, monkeypatch):
+    def response(request, timeout):
+        assert request.get_header("Accept") == "text/html"
+        result = Response(b'<html><body>Filing</body></html>')
+        result.url = ARCHIVE
+        return result
+    monkeypatch.setattr(client.opener, "open", response)
+    live = client.fetch(ARCHIVE)
+    cached = client.fetch(ARCHIVE)
+    assert live.data == cached.data == '<html><body>Filing</body></html>'
+    assert (live.source, cached.source) == ("live", "cache")
+    with pytest.raises(SecError, match="주소"):
+        client.fetch(ARCHIVE.replace("000018", "000019"))
+
+
+@pytest.mark.parametrize("url", [
+    ARCHIVE.replace("www.sec.gov", "data.sec.gov"), ARCHIVE.replace("/2488/", "/../"),
+    ARCHIVE.replace("https://", "http://"), ARCHIVE + "?redirect=x", ARCHIVE + "#f-1",
+    ARCHIVE.replace(".htm", ".exe"), ARCHIVE.replace("www.sec.gov", "www.sec.gov.evil.test"),
+])
+def test_archive_address_allowlist(url):
+    with pytest.raises(SecError):
+        validate_url(url)
