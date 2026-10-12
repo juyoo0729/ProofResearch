@@ -1,0 +1,10 @@
+*
+!Dockerfile
+!pyproject.toml
+!uv.lock
+!README.md
+!app.py
+!src/
+!src/proofresearch/
+!src/proofresearch/*.py
+!src/proofresearch/*.json

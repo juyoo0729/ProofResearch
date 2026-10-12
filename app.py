@@ -43,7 +43,7 @@ with st.form(f"research_{mode}"):
     with right:
         as_of = st.date_input("분석 기준일", value=date(2026, 3, 1) if mode == "sample" else date.today(),
                               min_value=date(1994, 1, 1), max_value=date.today())
-    st.caption("기준일 이전에 제출된 최근 2개 연차보고 기간을 사용합니다. 최신 기간의 4개 지표와 직전 기간의 매출·영업이익·이익률을 확인합니다.")
+    st.caption("기준일 이전에 제출된 최근 2개 연차보고 기간에서 각각 4개 지표를 확인합니다. 증가율은 해당 공시에 함께 보고된 전기 매출로 계산합니다.")
     query = st.text_area("확인하고 싶은 내용", value=ResearchRequest.model_fields["query"].default, max_chars=1000)
     use_agent = False
     if mode == "sec":
@@ -79,7 +79,7 @@ if report and report.request.mode == mode:
     else:
         st.warning(report.comparison.reason)
     st.dataframe(comparison_rows(report), hide_index=True, width="stretch")
-    st.caption("USD 원단위입니다. 직전 연도의 매출증가율은 전전기 자료가 대상 밖이므로 표시하지 않습니다.")
+    st.caption("USD 원단위입니다. 각 기간의 증가율은 같은 공시의 비교 수치로 계산하며, 전기 근거가 없으면 보류합니다.")
     for warning in report.warnings:
         st.caption(warning)
     st.subheader("수치 해석")

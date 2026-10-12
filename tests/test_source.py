@@ -84,7 +84,8 @@ def test_bad_source_also_holds_ratios_and_growth_without_losing_other_year(sampl
     documents[latest.accession] = document(source_html(latest).replace('id="revenue">125', 'id="revenue">126'), latest)
     verify_company(company, documents, {})
     assert [m.status for m in company.years[-1].metrics] == ["HOLD", "PASS", "HOLD", "HOLD"]
-    assert all(m.status == "PASS" for m in company.years[0].metrics)
+    assert all(m.status == "PASS" for m in company.years[0].metrics[:3])
+    assert company.years[0].metrics[3].status == "HOLD"  # Fixture omits that filing's prior revenue.
     assert all(m.value is None for m in company.years[-1].metrics if m.status == "HOLD")
 
 

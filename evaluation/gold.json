@@ -1,0 +1,1813 @@
+{
+  "version": "1",
+  "authored_on": "2026-10-12",
+  "provenance": "연결 손익계산서 금액을 직접 전사하고 별도 Decimal 산식으로 정답 작성. 생산 계산 결과를 정답으로 사용하지 않음. 작성·검토 주체는 개발 보조 AI이며 외부 전문가 독립 라벨링 아님.",
+  "sources": {
+    "AMD_2023-12-30": {
+      "ticker": "AMD",
+      "filing": {
+        "accession": "0000002488-24-000012",
+        "form": "10-K",
+        "filed": "2024-01-31",
+        "report_date": "2023-12-30",
+        "document": "amd-20231230.htm",
+        "cik": "0000002488"
+      },
+      "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000012/amd-20231230.htm",
+      "sha256": "825d079093aebe2d14de05425e1a9f7f2987d642c73fe3c47c1d671ce3e348e1",
+      "table_xpath": "/html/body/div[713]/table",
+      "unit": "USD millions",
+      "transcription": [
+        {
+          "id": "0000002488-24-000012:f-44",
+          "xpath": "/html/body/div[713]/table/tr[5]/td[3]/span/ix:nonfraction",
+          "quote": "22,680",
+          "value_millions": "22680"
+        },
+        {
+          "id": "0000002488-24-000012:f-71",
+          "xpath": "/html/body/div[713]/table/tr[15]/td[2]/span/ix:nonfraction",
+          "quote": "401",
+          "value_millions": "401"
+        },
+        {
+          "id": "0000002488-24-000012:f-45",
+          "xpath": "/html/body/div[713]/table/tr[5]/td[7]/span/ix:nonfraction",
+          "quote": "23,601",
+          "value_millions": "23601"
+        }
+      ]
+    },
+    "AMD_2024-12-28": {
+      "ticker": "AMD",
+      "filing": {
+        "accession": "0000002488-25-000012",
+        "form": "10-K",
+        "filed": "2025-02-05",
+        "report_date": "2024-12-28",
+        "document": "amd-20241228.htm",
+        "cik": "0000002488"
+      },
+      "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/amd-20241228.htm",
+      "sha256": "20964e50c465a2d15e2af94d90739a6dcca63788387b0990438fea48c28e1a78",
+      "table_xpath": "/html/body/div[704]/table",
+      "unit": "USD millions",
+      "transcription": [
+        {
+          "id": "0000002488-25-000012:f-40",
+          "xpath": "/html/body/div[704]/table/tr[5]/td[3]/span/ix:nonfraction",
+          "quote": "25,785",
+          "value_millions": "25785"
+        },
+        {
+          "id": "0000002488-25-000012:f-70",
+          "xpath": "/html/body/div[704]/table/tr[16]/td[2]/span/ix:nonfraction",
+          "quote": "1,900",
+          "value_millions": "1900"
+        },
+        {
+          "id": "0000002488-25-000012:f-41",
+          "xpath": "/html/body/div[704]/table/tr[5]/td[7]/span/ix:nonfraction",
+          "quote": "22,680",
+          "value_millions": "22680"
+        }
+      ]
+    },
+    "AMD_2025-12-27": {
+      "ticker": "AMD",
+      "filing": {
+        "accession": "0000002488-26-000018",
+        "form": "10-K",
+        "filed": "2026-02-04",
+        "report_date": "2025-12-27",
+        "document": "amd-20251227.htm",
+        "cik": "0000002488"
+      },
+      "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm",
+      "sha256": "34ebef6e1b4d3e6060b60838eae2478c2b9ec98874683b7ae339cae2d85f8478",
+      "table_xpath": "/html/body/div[699]/table",
+      "unit": "USD millions",
+      "transcription": [
+        {
+          "id": "0000002488-26-000018:f-46",
+          "xpath": "/html/body/div[699]/table/tr[5]/td[3]/span/ix:nonfraction",
+          "quote": "34,639",
+          "value_millions": "34639"
+        },
+        {
+          "id": "0000002488-26-000018:f-76",
+          "xpath": "/html/body/div[699]/table/tr[16]/td[2]/span/ix:nonfraction",
+          "quote": "3,694",
+          "value_millions": "3694"
+        },
+        {
+          "id": "0000002488-26-000018:f-47",
+          "xpath": "/html/body/div[699]/table/tr[5]/td[7]/span/ix:nonfraction",
+          "quote": "25,785",
+          "value_millions": "25785"
+        }
+      ]
+    },
+    "INTC_2023-12-30": {
+      "ticker": "INTC",
+      "filing": {
+        "accession": "0000050863-24-000010",
+        "form": "10-K",
+        "filed": "2024-01-26",
+        "report_date": "2023-12-30",
+        "document": "intc-20231230.htm",
+        "cik": "0000050863"
+      },
+      "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086324000010/intc-20231230.htm",
+      "sha256": "601a1638a6c8ef5b0afafe46c267fa4c2e3f7953fe273cf4567551bec51dd7cc",
+      "table_xpath": "/html/body/div[1130]/table",
+      "unit": "USD millions",
+      "transcription": [
+        {
+          "id": "0000050863-24-000010:f-44",
+          "xpath": "/html/body/div[1130]/table/tr[3]/td[4]/span[1]/ix:nonfraction",
+          "quote": "54,228",
+          "value_millions": "54228"
+        },
+        {
+          "id": "0000050863-24-000010:f-65",
+          "xpath": "/html/body/div[1130]/table/tr[11]/td[3]/span[1]/ix:nonfraction",
+          "quote": "93",
+          "value_millions": "93"
+        },
+        {
+          "id": "0000050863-24-000010:f-45",
+          "xpath": "/html/body/div[1130]/table/tr[3]/td[8]/span[1]/ix:nonfraction",
+          "quote": "63,054",
+          "value_millions": "63054"
+        }
+      ]
+    },
+    "INTC_2024-12-28": {
+      "ticker": "INTC",
+      "filing": {
+        "accession": "0000050863-25-000009",
+        "form": "10-K",
+        "filed": "2025-01-31",
+        "report_date": "2024-12-28",
+        "document": "intc-20241228.htm",
+        "cik": "0000050863"
+      },
+      "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm",
+      "sha256": "4169752663cdbb4d7aea894abc0b7e993df7973e3f3c24249927cd020dc747be",
+      "table_xpath": "/html/body/div[966]/table",
+      "unit": "USD millions",
+      "transcription": [
+        {
+          "id": "0000050863-25-000009:f-58",
+          "xpath": "/html/body/div[966]/table/tr[3]/td[4]/span[1]/ix:nonfraction",
+          "quote": "53,101",
+          "value_millions": "53101"
+        },
+        {
+          "id": "0000050863-25-000009:f-79",
+          "xpath": "/html/body/div[966]/table/tr[11]/td[3]/span/ix:nonfraction",
+          "quote": "11,678",
+          "value_millions": "-11678"
+        },
+        {
+          "id": "0000050863-25-000009:f-59",
+          "xpath": "/html/body/div[966]/table/tr[3]/td[8]/span[1]/ix:nonfraction",
+          "quote": "54,228",
+          "value_millions": "54228"
+        }
+      ]
+    },
+    "INTC_2025-12-27": {
+      "ticker": "INTC",
+      "filing": {
+        "accession": "0000050863-26-000011",
+        "form": "10-K",
+        "filed": "2026-01-23",
+        "report_date": "2025-12-27",
+        "document": "intc-20251227.htm",
+        "cik": "0000050863"
+      },
+      "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000011/intc-20251227.htm",
+      "sha256": "c494044bb0fcf0defc5713f34e4a5ad433f0ee46b95306eb2324e2a716d839a5",
+      "table_xpath": "/html/body/div[979]/table",
+      "unit": "USD millions",
+      "transcription": [
+        {
+          "id": "0000050863-26-000011:f-59",
+          "xpath": "/html/body/div[979]/table/tr[3]/td[4]/span[1]/ix:nonfraction",
+          "quote": "52,853",
+          "value_millions": "52853"
+        },
+        {
+          "id": "0000050863-26-000011:f-80",
+          "xpath": "/html/body/div[979]/table/tr[11]/td[3]/span/ix:nonfraction",
+          "quote": "2,214",
+          "value_millions": "-2214"
+        },
+        {
+          "id": "0000050863-26-000011:f-60",
+          "xpath": "/html/body/div[979]/table/tr[3]/td[8]/span[1]/ix:nonfraction",
+          "quote": "53,101",
+          "value_millions": "53101"
+        }
+      ]
+    },
+    "NVDA_2024-01-28": {
+      "ticker": "NVDA",
+      "filing": {
+        "accession": "0001045810-24-000029",
+        "form": "10-K",
+        "filed": "2024-02-21",
+        "report_date": "2024-01-28",
+        "document": "nvda-20240128.htm",
+        "cik": "0001045810"
+      },
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+      "sha256": "23d6055b3d60c6781e1afc4bdf8bdd10207df05227d0d01195c215301ece4793",
+      "table_xpath": "/html/body/div[785]/table",
+      "unit": "USD millions",
+      "transcription": [
+        {
+          "id": "0001045810-24-000029:f-49",
+          "xpath": "/html/body/div[785]/table/tr[4]/td[3]/span/ix:nonfraction",
+          "quote": "60,922",
+          "value_millions": "60922"
+        },
+        {
+          "id": "0001045810-24-000029:f-70",
+          "xpath": "/html/body/div[785]/table/tr[12]/td[2]/span/ix:nonfraction",
+          "quote": "32,972",
+          "value_millions": "32972"
+        },
+        {
+          "id": "0001045810-24-000029:f-50",
+          "xpath": "/html/body/div[785]/table/tr[4]/td[7]/span/ix:nonfraction",
+          "quote": "26,974",
+          "value_millions": "26974"
+        }
+      ]
+    },
+    "NVDA_2025-01-26": {
+      "ticker": "NVDA",
+      "filing": {
+        "accession": "0001045810-25-000023",
+        "form": "10-K",
+        "filed": "2025-02-26",
+        "report_date": "2025-01-26",
+        "document": "nvda-20250126.htm",
+        "cik": "0001045810"
+      },
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581025000023/nvda-20250126.htm",
+      "sha256": "1237a33fe11ffb754f24ef4337c9373282806949e1efcc3fe3d604d15831cafd",
+      "table_xpath": "/html/body/div[801]/table",
+      "unit": "USD millions",
+      "transcription": [
+        {
+          "id": "0001045810-25-000023:f-77",
+          "xpath": "/html/body/div[801]/table/tr[4]/td[3]/span/ix:nonfraction",
+          "quote": "130,497",
+          "value_millions": "130497"
+        },
+        {
+          "id": "0001045810-25-000023:f-98",
+          "xpath": "/html/body/div[801]/table/tr[12]/td[2]/span/ix:nonfraction",
+          "quote": "81,453",
+          "value_millions": "81453"
+        },
+        {
+          "id": "0001045810-25-000023:f-78",
+          "xpath": "/html/body/div[801]/table/tr[4]/td[7]/span/ix:nonfraction",
+          "quote": "60,922",
+          "value_millions": "60922"
+        }
+      ]
+    },
+    "NVDA_2026-01-25": {
+      "ticker": "NVDA",
+      "filing": {
+        "accession": "0001045810-26-000021",
+        "form": "10-K",
+        "filed": "2026-02-25",
+        "report_date": "2026-01-25",
+        "document": "nvda-20260125.htm",
+        "cik": "0001045810"
+      },
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+      "sha256": "82701210fcf8d50d96ed95e717f3088ffb6d6bd0626b777107ceb7b3b926de9d",
+      "table_xpath": "/html/body/div[841]/table",
+      "unit": "USD millions",
+      "transcription": [
+        {
+          "id": "0001045810-26-000021:f-72",
+          "xpath": "/html/body/div[841]/table/tr[4]/td[3]/span/ix:nonfraction",
+          "quote": "215,938",
+          "value_millions": "215938"
+        },
+        {
+          "id": "0001045810-26-000021:f-90",
+          "xpath": "/html/body/div[841]/table/tr[11]/td[2]/span/ix:nonfraction",
+          "quote": "130,387",
+          "value_millions": "130387"
+        },
+        {
+          "id": "0001045810-26-000021:f-73",
+          "xpath": "/html/body/div[841]/table/tr[4]/td[7]/span/ix:nonfraction",
+          "quote": "130,497",
+          "value_millions": "130497"
+        }
+      ]
+    }
+  },
+  "questions": [
+    {
+      "id": "D01",
+      "split": "dev",
+      "category": "numeric",
+      "tickers": [
+        "AMD"
+      ],
+      "as_of": "2025-03-01",
+      "question": "AMD의 보고 종료일 2023-12-30인 연차보고서 원본 연결 손익계산서 기준 매출을 구해주세요. USD 원 단위로 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "AMD",
+        "end": "2023-12-30",
+        "metric": "revenue"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "22680000000",
+        "unit": "USD",
+        "tolerance": "0.5",
+        "source": "AMD_2023-12-30",
+        "required_ids": [
+          "0000002488-24-000012:f-44"
+        ]
+      }
+    },
+    {
+      "id": "D02",
+      "split": "dev",
+      "category": "numeric",
+      "tickers": [
+        "AMD"
+      ],
+      "as_of": "2025-03-01",
+      "question": "AMD의 보고 종료일 2023-12-30인 연차보고서 원본 연결 손익계산서 기준 영업이익을 구해주세요. USD 원 단위로 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "AMD",
+        "end": "2023-12-30",
+        "metric": "operating_income"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "401000000",
+        "unit": "USD",
+        "tolerance": "0.5",
+        "source": "AMD_2023-12-30",
+        "required_ids": [
+          "0000002488-24-000012:f-71"
+        ]
+      }
+    },
+    {
+      "id": "D03",
+      "split": "dev",
+      "category": "numeric",
+      "tickers": [
+        "AMD"
+      ],
+      "as_of": "2025-03-01",
+      "question": "AMD의 보고 종료일 2023-12-30인 연차보고서 원본 연결 손익계산서 기준 영업이익률을 구해주세요. 퍼센트로 소수 둘째 자리 이상 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "AMD",
+        "end": "2023-12-30",
+        "metric": "operating_margin"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "1.768077601410934744268077601410934744268",
+        "unit": "%",
+        "tolerance": "0.005",
+        "source": "AMD_2023-12-30",
+        "required_ids": [
+          "0000002488-24-000012:f-44",
+          "0000002488-24-000012:f-71"
+        ]
+      }
+    },
+    {
+      "id": "D04",
+      "split": "dev",
+      "category": "numeric",
+      "tickers": [
+        "AMD"
+      ],
+      "as_of": "2025-03-01",
+      "question": "AMD의 보고 종료일 2023-12-30인 연차보고서 원본 연결 손익계산서 기준 전년 대비 매출증가율을 구해주세요. 퍼센트로 소수 둘째 자리 이상 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "AMD",
+        "end": "2023-12-30",
+        "metric": "revenue_growth"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "-3.902377017922969365704843015126477691623",
+        "unit": "%",
+        "tolerance": "0.005",
+        "source": "AMD_2023-12-30",
+        "required_ids": [
+          "0000002488-24-000012:f-44",
+          "0000002488-24-000012:f-45"
+        ]
+      }
+    },
+    {
+      "id": "E01",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "AMD"
+      ],
+      "as_of": "2026-10-12",
+      "question": "AMD의 보고 종료일 2024-12-28인 연차보고서 원본 연결 손익계산서 기준 매출을 구해주세요. USD 원 단위로 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "AMD",
+        "end": "2024-12-28",
+        "metric": "revenue"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "25785000000",
+        "unit": "USD",
+        "tolerance": "0.5",
+        "source": "AMD_2024-12-28",
+        "required_ids": [
+          "0000002488-25-000012:f-40"
+        ]
+      }
+    },
+    {
+      "id": "E02",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "AMD"
+      ],
+      "as_of": "2026-10-12",
+      "question": "AMD의 보고 종료일 2024-12-28인 연차보고서 원본 연결 손익계산서 기준 영업이익을 구해주세요. USD 원 단위로 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "AMD",
+        "end": "2024-12-28",
+        "metric": "operating_income"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "1900000000",
+        "unit": "USD",
+        "tolerance": "0.5",
+        "source": "AMD_2024-12-28",
+        "required_ids": [
+          "0000002488-25-000012:f-70"
+        ]
+      }
+    },
+    {
+      "id": "E03",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "AMD"
+      ],
+      "as_of": "2026-10-12",
+      "question": "AMD의 보고 종료일 2024-12-28인 연차보고서 원본 연결 손익계산서 기준 영업이익률을 구해주세요. 퍼센트로 소수 둘째 자리 이상 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "AMD",
+        "end": "2024-12-28",
+        "metric": "operating_margin"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "7.368625169672290091138258677525693232500",
+        "unit": "%",
+        "tolerance": "0.005",
+        "source": "AMD_2024-12-28",
+        "required_ids": [
+          "0000002488-25-000012:f-40",
+          "0000002488-25-000012:f-70"
+        ]
+      }
+    },
+    {
+      "id": "E04",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "AMD"
+      ],
+      "as_of": "2026-10-12",
+      "question": "AMD의 보고 종료일 2024-12-28인 연차보고서 원본 연결 손익계산서 기준 전년 대비 매출증가율을 구해주세요. 퍼센트로 소수 둘째 자리 이상 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "AMD",
+        "end": "2024-12-28",
+        "metric": "revenue_growth"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "13.69047619047619047619047619047619047619",
+        "unit": "%",
+        "tolerance": "0.005",
+        "source": "AMD_2024-12-28",
+        "required_ids": [
+          "0000002488-25-000012:f-40",
+          "0000002488-25-000012:f-41"
+        ]
+      }
+    },
+    {
+      "id": "E05",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "AMD"
+      ],
+      "as_of": "2026-10-12",
+      "question": "AMD의 보고 종료일 2025-12-27인 연차보고서 원본 연결 손익계산서 기준 매출을 구해주세요. USD 원 단위로 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "AMD",
+        "end": "2025-12-27",
+        "metric": "revenue"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "34639000000",
+        "unit": "USD",
+        "tolerance": "0.5",
+        "source": "AMD_2025-12-27",
+        "required_ids": [
+          "0000002488-26-000018:f-46"
+        ]
+      }
+    },
+    {
+      "id": "E06",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "AMD"
+      ],
+      "as_of": "2026-10-12",
+      "question": "AMD의 보고 종료일 2025-12-27인 연차보고서 원본 연결 손익계산서 기준 영업이익을 구해주세요. USD 원 단위로 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "AMD",
+        "end": "2025-12-27",
+        "metric": "operating_income"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "3694000000",
+        "unit": "USD",
+        "tolerance": "0.5",
+        "source": "AMD_2025-12-27",
+        "required_ids": [
+          "0000002488-26-000018:f-76"
+        ]
+      }
+    },
+    {
+      "id": "E07",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "AMD"
+      ],
+      "as_of": "2026-10-12",
+      "question": "AMD의 보고 종료일 2025-12-27인 연차보고서 원본 연결 손익계산서 기준 영업이익률을 구해주세요. 퍼센트로 소수 둘째 자리 이상 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "AMD",
+        "end": "2025-12-27",
+        "metric": "operating_margin"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "10.66428014665550391177574410346719016138",
+        "unit": "%",
+        "tolerance": "0.005",
+        "source": "AMD_2025-12-27",
+        "required_ids": [
+          "0000002488-26-000018:f-46",
+          "0000002488-26-000018:f-76"
+        ]
+      }
+    },
+    {
+      "id": "E08",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "AMD"
+      ],
+      "as_of": "2026-10-12",
+      "question": "AMD의 보고 종료일 2025-12-27인 연차보고서 원본 연결 손익계산서 기준 전년 대비 매출증가율을 구해주세요. 퍼센트로 소수 둘째 자리 이상 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "AMD",
+        "end": "2025-12-27",
+        "metric": "revenue_growth"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "34.33779329067287182470428543726973046345",
+        "unit": "%",
+        "tolerance": "0.005",
+        "source": "AMD_2025-12-27",
+        "required_ids": [
+          "0000002488-26-000018:f-46",
+          "0000002488-26-000018:f-47"
+        ]
+      }
+    },
+    {
+      "id": "D05",
+      "split": "dev",
+      "category": "numeric",
+      "tickers": [
+        "INTC"
+      ],
+      "as_of": "2025-03-01",
+      "question": "INTC의 보고 종료일 2023-12-30인 연차보고서 원본 연결 손익계산서 기준 매출을 구해주세요. USD 원 단위로 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "INTC",
+        "end": "2023-12-30",
+        "metric": "revenue"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "54228000000",
+        "unit": "USD",
+        "tolerance": "0.5",
+        "source": "INTC_2023-12-30",
+        "required_ids": [
+          "0000050863-24-000010:f-44"
+        ]
+      }
+    },
+    {
+      "id": "D06",
+      "split": "dev",
+      "category": "numeric",
+      "tickers": [
+        "INTC"
+      ],
+      "as_of": "2025-03-01",
+      "question": "INTC의 보고 종료일 2023-12-30인 연차보고서 원본 연결 손익계산서 기준 영업이익을 구해주세요. USD 원 단위로 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "INTC",
+        "end": "2023-12-30",
+        "metric": "operating_income"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "93000000",
+        "unit": "USD",
+        "tolerance": "0.5",
+        "source": "INTC_2023-12-30",
+        "required_ids": [
+          "0000050863-24-000010:f-65"
+        ]
+      }
+    },
+    {
+      "id": "D07",
+      "split": "dev",
+      "category": "numeric",
+      "tickers": [
+        "INTC"
+      ],
+      "as_of": "2025-03-01",
+      "question": "INTC의 보고 종료일 2023-12-30인 연차보고서 원본 연결 손익계산서 기준 영업이익률을 구해주세요. 퍼센트로 소수 둘째 자리 이상 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "INTC",
+        "end": "2023-12-30",
+        "metric": "operating_margin"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "0.1714981190528878070369550785572029210002",
+        "unit": "%",
+        "tolerance": "0.005",
+        "source": "INTC_2023-12-30",
+        "required_ids": [
+          "0000050863-24-000010:f-44",
+          "0000050863-24-000010:f-65"
+        ]
+      }
+    },
+    {
+      "id": "D08",
+      "split": "dev",
+      "category": "numeric",
+      "tickers": [
+        "INTC"
+      ],
+      "as_of": "2025-03-01",
+      "question": "INTC의 보고 종료일 2023-12-30인 연차보고서 원본 연결 손익계산서 기준 전년 대비 매출증가율을 구해주세요. 퍼센트로 소수 둘째 자리 이상 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "INTC",
+        "end": "2023-12-30",
+        "metric": "revenue_growth"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "-13.99752593015510514796840803121134265867",
+        "unit": "%",
+        "tolerance": "0.005",
+        "source": "INTC_2023-12-30",
+        "required_ids": [
+          "0000050863-24-000010:f-44",
+          "0000050863-24-000010:f-45"
+        ]
+      }
+    },
+    {
+      "id": "E09",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "INTC"
+      ],
+      "as_of": "2026-10-12",
+      "question": "INTC의 보고 종료일 2024-12-28인 연차보고서 원본 연결 손익계산서 기준 매출을 구해주세요. USD 원 단위로 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "INTC",
+        "end": "2024-12-28",
+        "metric": "revenue"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "53101000000",
+        "unit": "USD",
+        "tolerance": "0.5",
+        "source": "INTC_2024-12-28",
+        "required_ids": [
+          "0000050863-25-000009:f-58"
+        ]
+      }
+    },
+    {
+      "id": "E10",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "INTC"
+      ],
+      "as_of": "2026-10-12",
+      "question": "INTC의 보고 종료일 2024-12-28인 연차보고서 원본 연결 손익계산서 기준 영업이익을 구해주세요. USD 원 단위로 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "INTC",
+        "end": "2024-12-28",
+        "metric": "operating_income"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "-11678000000",
+        "unit": "USD",
+        "tolerance": "0.5",
+        "source": "INTC_2024-12-28",
+        "required_ids": [
+          "0000050863-25-000009:f-79"
+        ]
+      }
+    },
+    {
+      "id": "E11",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "INTC"
+      ],
+      "as_of": "2026-10-12",
+      "question": "INTC의 보고 종료일 2024-12-28인 연차보고서 원본 연결 손익계산서 기준 영업이익률을 구해주세요. 퍼센트로 소수 둘째 자리 이상 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "INTC",
+        "end": "2024-12-28",
+        "metric": "operating_margin"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "-21.99205288036006854861490367413043068869",
+        "unit": "%",
+        "tolerance": "0.005",
+        "source": "INTC_2024-12-28",
+        "required_ids": [
+          "0000050863-25-000009:f-58",
+          "0000050863-25-000009:f-79"
+        ]
+      }
+    },
+    {
+      "id": "E12",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "INTC"
+      ],
+      "as_of": "2026-10-12",
+      "question": "INTC의 보고 종료일 2024-12-28인 연차보고서 원본 연결 손익계산서 기준 전년 대비 매출증가율을 구해주세요. 퍼센트로 소수 둘째 자리 이상 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "INTC",
+        "end": "2024-12-28",
+        "metric": "revenue_growth"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "-2.078262152393597403555358855203953677067",
+        "unit": "%",
+        "tolerance": "0.005",
+        "source": "INTC_2024-12-28",
+        "required_ids": [
+          "0000050863-25-000009:f-58",
+          "0000050863-25-000009:f-59"
+        ]
+      }
+    },
+    {
+      "id": "E13",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "INTC"
+      ],
+      "as_of": "2026-10-12",
+      "question": "INTC의 보고 종료일 2025-12-27인 연차보고서 원본 연결 손익계산서 기준 매출을 구해주세요. USD 원 단위로 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "INTC",
+        "end": "2025-12-27",
+        "metric": "revenue"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "52853000000",
+        "unit": "USD",
+        "tolerance": "0.5",
+        "source": "INTC_2025-12-27",
+        "required_ids": [
+          "0000050863-26-000011:f-59"
+        ]
+      }
+    },
+    {
+      "id": "E14",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "INTC"
+      ],
+      "as_of": "2026-10-12",
+      "question": "INTC의 보고 종료일 2025-12-27인 연차보고서 원본 연결 손익계산서 기준 영업이익을 구해주세요. USD 원 단위로 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "INTC",
+        "end": "2025-12-27",
+        "metric": "operating_income"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "-2214000000",
+        "unit": "USD",
+        "tolerance": "0.5",
+        "source": "INTC_2025-12-27",
+        "required_ids": [
+          "0000050863-26-000011:f-80"
+        ]
+      }
+    },
+    {
+      "id": "E15",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "INTC"
+      ],
+      "as_of": "2026-10-12",
+      "question": "INTC의 보고 종료일 2025-12-27인 연차보고서 원본 연결 손익계산서 기준 영업이익률을 구해주세요. 퍼센트로 소수 둘째 자리 이상 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "INTC",
+        "end": "2025-12-27",
+        "metric": "operating_margin"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "-4.188976973870925018447391822602312073108",
+        "unit": "%",
+        "tolerance": "0.005",
+        "source": "INTC_2025-12-27",
+        "required_ids": [
+          "0000050863-26-000011:f-59",
+          "0000050863-26-000011:f-80"
+        ]
+      }
+    },
+    {
+      "id": "E16",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "INTC"
+      ],
+      "as_of": "2026-10-12",
+      "question": "INTC의 보고 종료일 2025-12-27인 연차보고서 원본 연결 손익계산서 기준 전년 대비 매출증가율을 구해주세요. 퍼센트로 소수 둘째 자리 이상 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "INTC",
+        "end": "2025-12-27",
+        "metric": "revenue_growth"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "-0.4670345191239336359013954539462533662266",
+        "unit": "%",
+        "tolerance": "0.005",
+        "source": "INTC_2025-12-27",
+        "required_ids": [
+          "0000050863-26-000011:f-59",
+          "0000050863-26-000011:f-60"
+        ]
+      }
+    },
+    {
+      "id": "D09",
+      "split": "dev",
+      "category": "numeric",
+      "tickers": [
+        "NVDA"
+      ],
+      "as_of": "2025-03-01",
+      "question": "NVDA의 보고 종료일 2024-01-28인 연차보고서 원본 연결 손익계산서 기준 매출을 구해주세요. USD 원 단위로 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "NVDA",
+        "end": "2024-01-28",
+        "metric": "revenue"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "60922000000",
+        "unit": "USD",
+        "tolerance": "0.5",
+        "source": "NVDA_2024-01-28",
+        "required_ids": [
+          "0001045810-24-000029:f-49"
+        ]
+      }
+    },
+    {
+      "id": "D10",
+      "split": "dev",
+      "category": "numeric",
+      "tickers": [
+        "NVDA"
+      ],
+      "as_of": "2025-03-01",
+      "question": "NVDA의 보고 종료일 2024-01-28인 연차보고서 원본 연결 손익계산서 기준 영업이익을 구해주세요. USD 원 단위로 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "NVDA",
+        "end": "2024-01-28",
+        "metric": "operating_income"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "32972000000",
+        "unit": "USD",
+        "tolerance": "0.5",
+        "source": "NVDA_2024-01-28",
+        "required_ids": [
+          "0001045810-24-000029:f-70"
+        ]
+      }
+    },
+    {
+      "id": "D11",
+      "split": "dev",
+      "category": "numeric",
+      "tickers": [
+        "NVDA"
+      ],
+      "as_of": "2025-03-01",
+      "question": "NVDA의 보고 종료일 2024-01-28인 연차보고서 원본 연결 손익계산서 기준 영업이익률을 구해주세요. 퍼센트로 소수 둘째 자리 이상 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "NVDA",
+        "end": "2024-01-28",
+        "metric": "operating_margin"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "54.12166376678375627852007484980795115065",
+        "unit": "%",
+        "tolerance": "0.005",
+        "source": "NVDA_2024-01-28",
+        "required_ids": [
+          "0001045810-24-000029:f-49",
+          "0001045810-24-000029:f-70"
+        ]
+      }
+    },
+    {
+      "id": "D12",
+      "split": "dev",
+      "category": "numeric",
+      "tickers": [
+        "NVDA"
+      ],
+      "as_of": "2025-03-01",
+      "question": "NVDA의 보고 종료일 2024-01-28인 연차보고서 원본 연결 손익계산서 기준 전년 대비 매출증가율을 구해주세요. 퍼센트로 소수 둘째 자리 이상 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "NVDA",
+        "end": "2024-01-28",
+        "metric": "revenue_growth"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "125.8545265811522206569288944909913249796",
+        "unit": "%",
+        "tolerance": "0.005",
+        "source": "NVDA_2024-01-28",
+        "required_ids": [
+          "0001045810-24-000029:f-49",
+          "0001045810-24-000029:f-50"
+        ]
+      }
+    },
+    {
+      "id": "E17",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "NVDA"
+      ],
+      "as_of": "2026-10-12",
+      "question": "NVDA의 보고 종료일 2025-01-26인 연차보고서 원본 연결 손익계산서 기준 매출을 구해주세요. USD 원 단위로 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "NVDA",
+        "end": "2025-01-26",
+        "metric": "revenue"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "130497000000",
+        "unit": "USD",
+        "tolerance": "0.5",
+        "source": "NVDA_2025-01-26",
+        "required_ids": [
+          "0001045810-25-000023:f-77"
+        ]
+      }
+    },
+    {
+      "id": "E18",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "NVDA"
+      ],
+      "as_of": "2026-10-12",
+      "question": "NVDA의 보고 종료일 2025-01-26인 연차보고서 원본 연결 손익계산서 기준 영업이익을 구해주세요. USD 원 단위로 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "NVDA",
+        "end": "2025-01-26",
+        "metric": "operating_income"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "81453000000",
+        "unit": "USD",
+        "tolerance": "0.5",
+        "source": "NVDA_2025-01-26",
+        "required_ids": [
+          "0001045810-25-000023:f-98"
+        ]
+      }
+    },
+    {
+      "id": "E19",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "NVDA"
+      ],
+      "as_of": "2026-10-12",
+      "question": "NVDA의 보고 종료일 2025-01-26인 연차보고서 원본 연결 손익계산서 기준 영업이익률을 구해주세요. 퍼센트로 소수 둘째 자리 이상 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "NVDA",
+        "end": "2025-01-26",
+        "metric": "operating_margin"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "62.41752683969746430952435688176739695165",
+        "unit": "%",
+        "tolerance": "0.005",
+        "source": "NVDA_2025-01-26",
+        "required_ids": [
+          "0001045810-25-000023:f-77",
+          "0001045810-25-000023:f-98"
+        ]
+      }
+    },
+    {
+      "id": "E20",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "NVDA"
+      ],
+      "as_of": "2026-10-12",
+      "question": "NVDA의 보고 종료일 2025-01-26인 연차보고서 원본 연결 손익계산서 기준 전년 대비 매출증가율을 구해주세요. 퍼센트로 소수 둘째 자리 이상 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "NVDA",
+        "end": "2025-01-26",
+        "metric": "revenue_growth"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "114.2034076359935655428252519615245724041",
+        "unit": "%",
+        "tolerance": "0.005",
+        "source": "NVDA_2025-01-26",
+        "required_ids": [
+          "0001045810-25-000023:f-77",
+          "0001045810-25-000023:f-78"
+        ]
+      }
+    },
+    {
+      "id": "E21",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "NVDA"
+      ],
+      "as_of": "2026-10-12",
+      "question": "NVDA의 보고 종료일 2026-01-25인 연차보고서 원본 연결 손익계산서 기준 매출을 구해주세요. USD 원 단위로 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "NVDA",
+        "end": "2026-01-25",
+        "metric": "revenue"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "215938000000",
+        "unit": "USD",
+        "tolerance": "0.5",
+        "source": "NVDA_2026-01-25",
+        "required_ids": [
+          "0001045810-26-000021:f-72"
+        ]
+      }
+    },
+    {
+      "id": "E22",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "NVDA"
+      ],
+      "as_of": "2026-10-12",
+      "question": "NVDA의 보고 종료일 2026-01-25인 연차보고서 원본 연결 손익계산서 기준 영업이익을 구해주세요. USD 원 단위로 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "NVDA",
+        "end": "2026-01-25",
+        "metric": "operating_income"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "130387000000",
+        "unit": "USD",
+        "tolerance": "0.5",
+        "source": "NVDA_2026-01-25",
+        "required_ids": [
+          "0001045810-26-000021:f-90"
+        ]
+      }
+    },
+    {
+      "id": "E23",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "NVDA"
+      ],
+      "as_of": "2026-10-12",
+      "question": "NVDA의 보고 종료일 2026-01-25인 연차보고서 원본 연결 손익계산서 기준 영업이익률을 구해주세요. 퍼센트로 소수 둘째 자리 이상 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "NVDA",
+        "end": "2026-01-25",
+        "metric": "operating_margin"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "60.38168363141272031786901795885856125369",
+        "unit": "%",
+        "tolerance": "0.005",
+        "source": "NVDA_2026-01-25",
+        "required_ids": [
+          "0001045810-26-000021:f-72",
+          "0001045810-26-000021:f-90"
+        ]
+      }
+    },
+    {
+      "id": "E24",
+      "split": "eval",
+      "category": "numeric",
+      "tickers": [
+        "NVDA"
+      ],
+      "as_of": "2026-10-12",
+      "question": "NVDA의 보고 종료일 2026-01-25인 연차보고서 원본 연결 손익계산서 기준 전년 대비 매출증가율을 구해주세요. 퍼센트로 소수 둘째 자리 이상 답하세요. 증가율은 해당 공시의 전기 비교 매출을 사용하고 원문 근거를 제시하세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "NVDA",
+        "end": "2026-01-25",
+        "metric": "revenue_growth"
+      },
+      "expected": {
+        "status": "PASS",
+        "value": "65.47353579009479145114447075411695288014",
+        "unit": "%",
+        "tolerance": "0.005",
+        "source": "NVDA_2026-01-25",
+        "required_ids": [
+          "0001045810-26-000021:f-72",
+          "0001045810-26-000021:f-73"
+        ]
+      }
+    },
+    {
+      "id": "E25",
+      "split": "eval",
+      "category": "narrative",
+      "tickers": [
+        "AMD"
+      ],
+      "as_of": "2026-10-12",
+      "question": "AMD의 보고 종료일 2025-12-27인 연차보고서에서 반도체 산업의 경기 순환이 AMD에 주는 위험을 한국어 한두 문장으로 설명하고 정확한 원문 구절을 인용하세요.",
+      "target": {
+        "kind": "narrative",
+        "ticker": "AMD",
+        "end": "2025-12-27"
+      },
+      "expected": {
+        "status": "PASS",
+        "criterion": "수요·공급 변동 또는 가격 하락이 손실/수익성에 영향을 줄 수 있음",
+        "source": "AMD_2025-12-27",
+        "reference_id": "77856695193d0f8f8c0d5a0e",
+        "xpath": "/html/body/div[302]",
+        "reference_quote": "The semiconductor industry is highly cyclical and has experienced significant downturns, often alongside constant and rapid technological change, wide fluctuations in supply and demand, continuous new product introductions, price erosion and declines in general economic conditions. The growth of AI ",
+        "review": "다른 문단도 질문에 답하고 주장을 함의하면 허용. 조건부 위험을 확정 사실로 바꾸지 않음."
+      }
+    },
+    {
+      "id": "E26",
+      "split": "eval",
+      "category": "narrative",
+      "tickers": [
+        "AMD"
+      ],
+      "as_of": "2026-10-12",
+      "question": "AMD의 보고 종료일 2024-12-28인 연차보고서에서 Intel의 공격적인 가격·영업 활동이 AMD에 주는 위험을 한국어 한두 문장으로 설명하고 정확한 원문 구절을 인용하세요.",
+      "target": {
+        "kind": "narrative",
+        "ticker": "AMD",
+        "end": "2024-12-28"
+      },
+      "expected": {
+        "status": "PASS",
+        "criterion": "Intel의 가격·고객 인센티브가 AMD 판매/평균가격/이익률에 불리할 수 있음",
+        "source": "AMD_2024-12-28",
+        "reference_id": "52a00500d12a067737798861",
+        "xpath": "/html/body/div[294]",
+        "reference_quote": "Intel’s microprocessor market share position, significant financial resources, introduction of competitive new products, and existing relationships with top-tier OEMs have enabled it to market and price its products aggressively, to target our customers and our channel partners with special incentiv",
+        "review": "다른 문단도 질문에 답하고 주장을 함의하면 허용. 조건부 위험을 확정 사실로 바꾸지 않음."
+      }
+    },
+    {
+      "id": "E27",
+      "split": "eval",
+      "category": "narrative",
+      "tickers": [
+        "INTC"
+      ],
+      "as_of": "2026-10-12",
+      "question": "INTC의 보고 종료일 2025-12-27인 연차보고서에서 관세와 수출 통제 등 국제 무역정책 불확실성이 Intel에 주는 위험을 한국어 한두 문장으로 설명하고 정확한 원문 구절을 인용하세요.",
+      "target": {
+        "kind": "narrative",
+        "ticker": "INTC",
+        "end": "2025-12-27"
+      },
+      "expected": {
+        "status": "PASS",
+        "criterion": "무역 정책·관세·수출 통제의 변화가 Intel 사업이나 시장에 영향을 줄 수 있음",
+        "source": "INTC_2025-12-27",
+        "reference_id": "899ee6df934f17f83ec11413",
+        "xpath": "/html/body/div[85]",
+        "reference_quote": "▪recently elevated geopolitical tensions, volatility and uncertainty with respect to international trade policies, including tariffs and export controls, impacting our business, the markets in which we compete and the world economy;",
+        "review": "다른 문단도 질문에 답하고 주장을 함의하면 허용. 조건부 위험을 확정 사실로 바꾸지 않음."
+      }
+    },
+    {
+      "id": "E28",
+      "split": "eval",
+      "category": "narrative",
+      "tickers": [
+        "INTC"
+      ],
+      "as_of": "2026-10-12",
+      "question": "INTC의 보고 종료일 2024-12-28인 연차보고서에서 빠른 기술·시장 변화에 대응하지 못할 때 Intel의 경쟁 위험을 한국어 한두 문장으로 설명하고 정확한 원문 구절을 인용하세요.",
+      "target": {
+        "kind": "narrative",
+        "ticker": "INTC",
+        "end": "2024-12-28"
+      },
+      "expected": {
+        "status": "PASS",
+        "criterion": "대응 실패 시 경쟁력이 약해지거나 제품/기술이 경쟁력을 잃을 수 있음",
+        "source": "INTC_2024-12-28",
+        "reference_id": "8664f2a0a79d65cad622cf7f",
+        "xpath": "/html/body/div[635]",
+        "reference_quote": "The industry in which we operate is highly competitive and subject to rapid technological, geopolitical, and market developments; changes in industry standards; changes in customer and end-user needs, expectations, and preferences; and frequent product introductions and improvements. When we do not ",
+        "review": "다른 문단도 질문에 답하고 주장을 함의하면 허용. 조건부 위험을 확정 사실로 바꾸지 않음."
+      }
+    },
+    {
+      "id": "E29",
+      "split": "eval",
+      "category": "narrative",
+      "tickers": [
+        "NVDA"
+      ],
+      "as_of": "2026-10-12",
+      "question": "NVDA의 보고 종료일 2026-01-25인 연차보고서에서 제삼자 제조업체에 대한 NVIDIA의 의존 위험을 한국어 한두 문장으로 설명하고 정확한 원문 구절을 인용하세요.",
+      "target": {
+        "kind": "narrative",
+        "ticker": "NVDA",
+        "end": "2026-01-25"
+      },
+      "expected": {
+        "status": "PASS",
+        "criterion": "공급업체 의존으로 물량/품질/수율/납기 통제가 약해질 수 있음",
+        "source": "NVDA_2026-01-25",
+        "reference_id": "825a7621b9a26f1855545244",
+        "xpath": "/html/body/div[223]",
+        "reference_quote": "•Dependency on third-party suppliers and their technology to manufacture, assemble, test, or package our products reduces our control over product quantity and quality, manufacturing yields, and product delivery schedules and could harm our business.",
+        "review": "다른 문단도 질문에 답하고 주장을 함의하면 허용. 조건부 위험을 확정 사실로 바꾸지 않음."
+      }
+    },
+    {
+      "id": "E30",
+      "split": "eval",
+      "category": "narrative",
+      "tickers": [
+        "NVDA"
+      ],
+      "as_of": "2026-10-12",
+      "question": "NVDA의 보고 종료일 2025-01-26인 연차보고서에서 제삼자 제조업체에 대한 NVIDIA의 의존 위험을 한국어 한두 문장으로 설명하고 정확한 원문 구절을 인용하세요.",
+      "target": {
+        "kind": "narrative",
+        "ticker": "NVDA",
+        "end": "2025-01-26"
+      },
+      "expected": {
+        "status": "PASS",
+        "criterion": "공급업체 의존으로 물량/품질/수율/납기 통제가 약해질 수 있음",
+        "source": "NVDA_2025-01-26",
+        "reference_id": "901a25c0f5dce3a7a1234f40",
+        "xpath": "/html/body/div[228]",
+        "reference_quote": "•Dependency on third-party suppliers and their technology to manufacture, assemble, test, or package our products reduces our control over product quantity and quality, manufacturing yields, and product delivery schedules and could harm our business.",
+        "review": "다른 문단도 질문에 답하고 주장을 함의하면 허용. 조건부 위험을 확정 사실로 바꾸지 않음."
+      }
+    },
+    {
+      "id": "E31",
+      "split": "eval",
+      "category": "narrative",
+      "tickers": [
+        "NVDA"
+      ],
+      "as_of": "2026-10-12",
+      "question": "NVDA의 보고 종료일 2026-01-25인 연차보고서에서 수출 통제가 NVIDIA의 중국 시장 판매에 주는 제약을 한국어 한두 문장으로 설명하고 정확한 원문 구절을 인용하세요.",
+      "target": {
+        "kind": "narrative",
+        "ticker": "NVDA",
+        "end": "2026-01-25"
+      },
+      "expected": {
+        "status": "PASS",
+        "criterion": "수출 통제로 중국에 제공하는 제품이 제한되거나 시장 접근/경쟁/매출이 영향을 받음",
+        "source": "NVDA_2026-01-25",
+        "reference_id": "1e24c7f111fce9fcd44f80ce",
+        "xpath": "/html/body/div[346]",
+        "reference_quote": "We sell our products internationally, and we also have operations and conduct business internationally. Our semiconductor wafers are manufactured, assembled, tested and packaged by third parties located outside of the United States, and we generated 31% of our revenue in fiscal year 2026 from sales ",
+        "review": "다른 문단도 질문에 답하고 주장을 함의하면 허용. 조건부 위험을 확정 사실로 바꾸지 않음."
+      }
+    },
+    {
+      "id": "E32",
+      "split": "eval",
+      "category": "narrative",
+      "tickers": [
+        "INTC"
+      ],
+      "as_of": "2026-10-12",
+      "question": "INTC의 보고 종료일 2024-12-28인 연차보고서에서 경쟁사들이 사용하는 외부 파운드리의 발전이 Intel에 주는 경쟁 위험을 한국어 한두 문장으로 설명하고 정확한 원문 구절을 인용하세요.",
+      "target": {
+        "kind": "narrative",
+        "ticker": "INTC",
+        "end": "2024-12-28"
+      },
+      "expected": {
+        "status": "PASS",
+        "criterion": "TSMC/Samsung 등 파운드리 발전이 경쟁사 제품 경쟁력을 높일 수 있음",
+        "source": "INTC_2024-12-28",
+        "reference_id": "7d0e7f06e7977e62c0df6246",
+        "xpath": "/html/body/div[637]",
+        "reference_quote": "Most of our competitors rely on third-party foundries, such as TSMC or Samsung, for the manufacture and assembly and test of their semiconductor components and products. Manufacturing process and assembly and test improvements introduced by such foundries have contributed, and may continue to contri",
+        "review": "다른 문단도 질문에 답하고 주장을 함의하면 허용. 조건부 위험을 확정 사실로 바꾸지 않음."
+      }
+    },
+    {
+      "id": "D13",
+      "split": "dev",
+      "category": "narrative",
+      "tickers": [
+        "AMD"
+      ],
+      "as_of": "2025-03-01",
+      "question": "AMD의 보고 종료일 2023-12-30인 연차보고서에서 Intel의 공격적인 가격·영업 활동이 AMD에 주는 위험을 한국어 한두 문장으로 설명하고 정확한 원문 구절을 인용하세요.",
+      "target": {
+        "kind": "narrative",
+        "ticker": "AMD",
+        "end": "2023-12-30"
+      },
+      "expected": {
+        "status": "PASS",
+        "criterion": "경쟁사 가격·인센티브가 AMD의 판매·가격·수익성을 압박함",
+        "source": "AMD_2023-12-30",
+        "reference_id": "f22e5888f019e6eeee237af6",
+        "xpath": "/html/body/div[297]",
+        "reference_quote": "Intel’s microprocessor market share position, significant financial resources, introduction of competitive new products, and existing relationships with top-tier OEMs have enabled it to market and price its products aggressively, to target our customers and our channel partners with special incentiv",
+        "review": "다른 문단도 질문에 답하고 주장을 함의하면 허용. 조건부 위험을 확정 사실로 바꾸지 않음."
+      }
+    },
+    {
+      "id": "D14",
+      "split": "dev",
+      "category": "narrative",
+      "tickers": [
+        "INTC"
+      ],
+      "as_of": "2025-03-01",
+      "question": "INTC의 보고 종료일 2023-12-30인 연차보고서에서 미국·중국 무역 갈등과 수출 통제가 Intel에 주는 위험을 한국어 한두 문장으로 설명하고 정확한 원문 구절을 인용하세요.",
+      "target": {
+        "kind": "narrative",
+        "ticker": "INTC",
+        "end": "2023-12-30"
+      },
+      "expected": {
+        "status": "PASS",
+        "criterion": "관세·수출 통제로 시장 접근 또는 주문·사업이 영향을 받음",
+        "source": "INTC_2023-12-30",
+        "reference_id": "c39211c7d6273487fba7a6ab",
+        "xpath": "/html/body/div[843]",
+        "reference_quote": "In particular, geopolitical and trade tensions between the US and China, one of our largest markets, have led to increased tariffs and trade restrictions, including tariffs applicable to some of our products, and have affected customer ordering patterns. Further, the US has imposed restrictions on t",
+        "review": "다른 문단도 질문에 답하고 주장을 함의하면 허용. 조건부 위험을 확정 사실로 바꾸지 않음."
+      }
+    },
+    {
+      "id": "D15",
+      "split": "dev",
+      "category": "narrative",
+      "tickers": [
+        "NVDA"
+      ],
+      "as_of": "2025-03-01",
+      "question": "NVDA의 보고 종료일 2024-01-28인 연차보고서에서 제삼자 제조업체에 대한 NVIDIA의 의존 위험을 한국어 한두 문장으로 설명하고 정확한 원문 구절을 인용하세요.",
+      "target": {
+        "kind": "narrative",
+        "ticker": "NVDA",
+        "end": "2024-01-28"
+      },
+      "expected": {
+        "status": "PASS",
+        "criterion": "물량/품질/수율/납기 통제가 약해질 수 있음",
+        "source": "NVDA_2024-01-28",
+        "reference_id": "cf101ea75b2a68db6e49794e",
+        "xpath": "/html/body/div[221]",
+        "reference_quote": "•Dependency on third-party suppliers and their technology to manufacture, assemble, test, or package our products reduces our control over product quantity and quality, manufacturing yields, and product delivery schedules and could harm our business.",
+        "review": "다른 문단도 질문에 답하고 주장을 함의하면 허용. 조건부 위험을 확정 사실로 바꾸지 않음."
+      }
+    },
+    {
+      "id": "D16",
+      "split": "dev",
+      "category": "narrative",
+      "tickers": [
+        "NVDA"
+      ],
+      "as_of": "2025-03-01",
+      "question": "NVDA의 보고 종료일 2024-01-28인 연차보고서에서 경쟁사 제품과 시장 변화가 NVIDIA에 주는 위험을 한국어 한두 문장으로 설명하고 정확한 원문 구절을 인용하세요.",
+      "target": {
+        "kind": "narrative",
+        "ticker": "NVDA",
+        "end": "2024-01-28"
+      },
+      "expected": {
+        "status": "PASS",
+        "criterion": "더 저렴하거나 우수한 경쟁제품이 판매가격/수요에 영향을 줄 수 있음",
+        "source": "NVDA_2024-01-28",
+        "reference_id": "e9fe3f3f16b42d0d5082ff3e",
+        "xpath": "/html/body/div[264]",
+        "reference_quote": "Our target markets remain competitive, and competition may intensify with expanding and changing product and service offerings, industry standards, customer needs, new entrants and consolidations. Our competitors’ products, services and technologies, including those mentioned above in this Annual Re",
+        "review": "다른 문단도 질문에 답하고 주장을 함의하면 허용. 조건부 위험을 확정 사실로 바꾸지 않음."
+      }
+    },
+    {
+      "id": "D17",
+      "split": "dev",
+      "category": "hold",
+      "tickers": [
+        "AMD",
+        "NVDA"
+      ],
+      "as_of": "2025-03-01",
+      "question": "AMD·NVDA의 최신 연차 매출을 완전히 동일한 시작일·종료일 및 계정 정의의 기간끼리 직접 비교해 순위를 정해주세요. 조건이 다르면 비교를 보류하세요.",
+      "target": {
+        "kind": "comparison",
+        "metric": "revenue"
+      },
+      "expected": {
+        "status": "HOLD",
+        "reason_kind": "period_mismatch",
+        "criterion": "결산기간 또는 계정 정의가 달라 직접 순위를 보류해야 함"
+      }
+    },
+    {
+      "id": "D18",
+      "split": "dev",
+      "category": "hold",
+      "tickers": [
+        "INTC",
+        "NVDA"
+      ],
+      "as_of": "2025-03-01",
+      "question": "INTC·NVDA의 최신 연차 영업이익률을 완전히 동일한 시작일·종료일 및 계정 정의의 기간끼리 직접 비교해 순위를 정해주세요. 조건이 다르면 비교를 보류하세요.",
+      "target": {
+        "kind": "comparison",
+        "metric": "operating_margin"
+      },
+      "expected": {
+        "status": "HOLD",
+        "reason_kind": "period_mismatch",
+        "criterion": "결산기간 또는 계정 정의가 달라 직접 순위를 보류해야 함"
+      }
+    },
+    {
+      "id": "D19",
+      "split": "dev",
+      "category": "hold",
+      "tickers": [
+        "AMD"
+      ],
+      "as_of": "2025-03-01",
+      "question": "2025-03-01까지 제출된 공시만 사용해서 AMD의 보고 종료일 2025-12-27인 연차 매출을 USD로 알려주세요. 해당 기간 연차 공시가 아직 제출되지 않았다면 보류하고 추정하지 마세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "AMD",
+        "end": "2025-12-27",
+        "metric": "revenue"
+      },
+      "expected": {
+        "status": "HOLD",
+        "reason_kind": "unfiled_period",
+        "criterion": "기준일에 해당 연차 공시를 확보할 수 없어 대상 기간 값을 만들지 않아야 함"
+      }
+    },
+    {
+      "id": "D20",
+      "split": "dev",
+      "category": "hold",
+      "tickers": [
+        "INTC"
+      ],
+      "as_of": "2025-03-01",
+      "question": "2025-03-01까지 제출된 공시만 사용해서 INTC의 보고 종료일 2025-12-27인 연차 매출을 USD로 알려주세요. 해당 기간 연차 공시가 아직 제출되지 않았다면 보류하고 추정하지 마세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "INTC",
+        "end": "2025-12-27",
+        "metric": "revenue"
+      },
+      "expected": {
+        "status": "HOLD",
+        "reason_kind": "unfiled_period",
+        "criterion": "기준일에 해당 연차 공시를 확보할 수 없어 대상 기간 값을 만들지 않아야 함"
+      }
+    },
+    {
+      "id": "E33",
+      "split": "eval",
+      "category": "hold",
+      "tickers": [
+        "AMD",
+        "NVDA"
+      ],
+      "as_of": "2026-10-12",
+      "question": "AMD·NVDA의 최신 연차 매출을 완전히 동일한 시작일·종료일 및 계정 정의의 기간끼리 직접 비교해 순위를 정해주세요. 조건이 다르면 비교를 보류하세요.",
+      "target": {
+        "kind": "comparison",
+        "metric": "revenue"
+      },
+      "expected": {
+        "status": "HOLD",
+        "reason_kind": "period_mismatch",
+        "criterion": "결산기간 또는 계정 정의가 달라 직접 순위를 보류해야 함"
+      }
+    },
+    {
+      "id": "E34",
+      "split": "eval",
+      "category": "hold",
+      "tickers": [
+        "INTC",
+        "NVDA"
+      ],
+      "as_of": "2026-10-12",
+      "question": "INTC·NVDA의 최신 연차 영업이익률을 완전히 동일한 시작일·종료일 및 계정 정의의 기간끼리 직접 비교해 순위를 정해주세요. 조건이 다르면 비교를 보류하세요.",
+      "target": {
+        "kind": "comparison",
+        "metric": "operating_margin"
+      },
+      "expected": {
+        "status": "HOLD",
+        "reason_kind": "period_mismatch",
+        "criterion": "결산기간 또는 계정 정의가 달라 직접 순위를 보류해야 함"
+      }
+    },
+    {
+      "id": "E35",
+      "split": "eval",
+      "category": "hold",
+      "tickers": [
+        "AMD",
+        "NVDA"
+      ],
+      "as_of": "2026-10-12",
+      "question": "AMD·NVDA의 최신 연차 전년 대비 매출증가율을 완전히 동일한 시작일·종료일 및 계정 정의의 기간끼리 직접 비교해 순위를 정해주세요. 조건이 다르면 비교를 보류하세요.",
+      "target": {
+        "kind": "comparison",
+        "metric": "revenue_growth"
+      },
+      "expected": {
+        "status": "HOLD",
+        "reason_kind": "period_mismatch",
+        "criterion": "결산기간 또는 계정 정의가 달라 직접 순위를 보류해야 함"
+      }
+    },
+    {
+      "id": "E36",
+      "split": "eval",
+      "category": "hold",
+      "tickers": [
+        "AMD",
+        "INTC",
+        "NVDA"
+      ],
+      "as_of": "2026-10-12",
+      "question": "AMD·INTC·NVDA의 최신 연차 영업이익을 완전히 동일한 시작일·종료일 및 계정 정의의 기간끼리 직접 비교해 순위를 정해주세요. 조건이 다르면 비교를 보류하세요.",
+      "target": {
+        "kind": "comparison",
+        "metric": "operating_income"
+      },
+      "expected": {
+        "status": "HOLD",
+        "reason_kind": "period_mismatch",
+        "criterion": "결산기간 또는 계정 정의가 달라 직접 순위를 보류해야 함"
+      }
+    },
+    {
+      "id": "E37",
+      "split": "eval",
+      "category": "hold",
+      "tickers": [
+        "AMD"
+      ],
+      "as_of": "2026-01-15",
+      "question": "2026-01-15까지 제출된 공시만 사용해서 AMD의 보고 종료일 2025-12-27인 연차 매출을 USD로 알려주세요. 해당 기간 연차 공시가 아직 제출되지 않았다면 보류하고 추정하지 마세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "AMD",
+        "end": "2025-12-27",
+        "metric": "revenue"
+      },
+      "expected": {
+        "status": "HOLD",
+        "reason_kind": "unfiled_period",
+        "criterion": "기준일에 해당 연차 공시를 확보할 수 없어 대상 기간 값을 만들지 않아야 함"
+      }
+    },
+    {
+      "id": "E38",
+      "split": "eval",
+      "category": "hold",
+      "tickers": [
+        "INTC"
+      ],
+      "as_of": "2026-01-15",
+      "question": "2026-01-15까지 제출된 공시만 사용해서 INTC의 보고 종료일 2025-12-27인 연차 매출을 USD로 알려주세요. 해당 기간 연차 공시가 아직 제출되지 않았다면 보류하고 추정하지 마세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "INTC",
+        "end": "2025-12-27",
+        "metric": "revenue"
+      },
+      "expected": {
+        "status": "HOLD",
+        "reason_kind": "unfiled_period",
+        "criterion": "기준일에 해당 연차 공시를 확보할 수 없어 대상 기간 값을 만들지 않아야 함"
+      }
+    },
+    {
+      "id": "E39",
+      "split": "eval",
+      "category": "hold",
+      "tickers": [
+        "NVDA"
+      ],
+      "as_of": "2026-02-01",
+      "question": "2026-02-01까지 제출된 공시만 사용해서 NVDA의 보고 종료일 2026-01-25인 연차 매출을 USD로 알려주세요. 해당 기간 연차 공시가 아직 제출되지 않았다면 보류하고 추정하지 마세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "NVDA",
+        "end": "2026-01-25",
+        "metric": "revenue"
+      },
+      "expected": {
+        "status": "HOLD",
+        "reason_kind": "unfiled_period",
+        "criterion": "기준일에 해당 연차 공시를 확보할 수 없어 대상 기간 값을 만들지 않아야 함"
+      }
+    },
+    {
+      "id": "E40",
+      "split": "eval",
+      "category": "hold",
+      "tickers": [
+        "AMD"
+      ],
+      "as_of": "2026-10-12",
+      "question": "2026-10-12까지 제출된 공시만 사용해서 AMD의 보고 종료일 2026-12-26인 연차 매출을 USD로 알려주세요. 해당 기간 연차 공시가 아직 제출되지 않았다면 보류하고 추정하지 마세요.",
+      "target": {
+        "kind": "scalar",
+        "ticker": "AMD",
+        "end": "2026-12-26",
+        "metric": "revenue"
+      },
+      "expected": {
+        "status": "HOLD",
+        "reason_kind": "unfiled_period",
+        "criterion": "기준일에 해당 연차 공시를 확보할 수 없어 대상 기간 값을 만들지 않아야 함"
+      }
+    }
+  ]
+}

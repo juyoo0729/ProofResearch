@@ -13,7 +13,7 @@ from .source import SourceDocument, reviewed_original, verify_company
 
 
 def run_research(request: ResearchRequest, *, user_agent="",
-                 cache_path: Path = Path(".cache/sec.sqlite3"), refresh=False) -> RunReport:
+                 cache_path: Path = Path(".cache/sec.sqlite3"), refresh=False, offline=False) -> RunReport:
     started = monotonic()
     events, snapshots, warnings, results = [], [], [], []
 
@@ -44,7 +44,7 @@ def run_research(request: ResearchRequest, *, user_agent="",
             results.append(analyze_company(ticker, name, filings, sample["companyfacts"], request.as_of, sample=True))
             event("validate", "예제 자료 계산·검사 완료", ticker=ticker)
     else:
-        with SecClient(user_agent, cache_path) as client:
+        with SecClient(user_agent, cache_path, offline=offline) as client:
             for ticker in request.tickers:
                 name, cik = COMPANIES[ticker]
                 try:

@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "frozen_at": "2026-10-12T04:42:25.918593+00:00",
+  "gold_sha256": "58693207132685edfaebdf9870c0cea73a4d9a62344873550642bd68be015b1a",
+  "corpus_sha256": "0f903e49919030416ab8ec244d0bcb0d0055198e558919cf0062a2ea8bc0a07f",
+  "code": {
+    "src/proofresearch/__init__.py": "0462bc16ef4118f25d304d1cf67046b9d7439e6e9f33decf1961b5cc03573969",
+    "src/proofresearch/agent.py": "3cff559e65f2b9ba4be4a3d6ae25eafe0ae9ef103bd21e5eeba27188a936e15e",
+    "src/proofresearch/analysis.py": "9441c22c001a88e6e5d8ab8b5fa1bb13af1474267818f6a0f809244c44f62447",
+    "src/proofresearch/cli.py": "e4e463244fe12b732c23f347b9796a2cd4cee850461c00bbac2b3a07ee53dabb",
+    "src/proofresearch/llm.py": "e874a43f0fe5fc4e2d6162553bacbf17dd45d31ed815b5e399b3db2feb0f20a6",
+    "src/proofresearch/models.py": "a4f4d82b0adf3e6b7bac570a2a99fa0dec087af37ba905dcbb95390434c05f3d",
+    "src/proofresearch/report.py": "d4b002d14031959ac4b4d57dee61b302c4f0c7b4b51dbb4a58b779134897972c",
+    "src/proofresearch/retrieval.py": "d7b83c1f37bdd7d0b773f8808e7eb7cbfb3ef86e6ef02174520765a3f1b07ffe",
+    "src/proofresearch/sec.py": "7b4d0fa37a47bfb8e64832ca93ce80687f74317629920093fdc4f90823af6dbe",
+    "src/proofresearch/source.py": "58495d90f45feee206a32cce0ffcd74ca606c2df9fd277e67ffad481eccb4b97",
+    "src/proofresearch/workflow.py": "e1c5160230c450458d97619b9503b9a26e4a1c265e2a1b94dd2b02ada1207b12",
+    "src/proofresearch/amendments.json": "2773a746c36f4d8eae859c9e5bafb151c16935f6886b22cce64750a52ce57f39",
+    "evaluation/run.py": "7c06319993cabe9a6f161bb1d0c48e65b1a00e271cde431e169d03510695e57e",
+    "uv.lock": "f13e8353f89cda372515f895860a7b42d3f5594282db5dcedb14f6b2c1968e5e"
+  },
+  "model": "gpt-6-luna",
+  "numeric_tolerance": "USD 0.5; percent 0.005 percentage point",
+  "trials": 1,
+  "limits": "tools 12, LLM 6, retries 2, 180 seconds, KRW 500/request and 50000 total",
+  "narrative_review": "Developer-assisted source entailment review, not external expert validation"
+}

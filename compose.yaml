@@ -1,0 +1,12 @@
+services:
+  proofresearch:
+    build: .
+    ports:
+      - "127.0.0.1:8502:8501"
+    env_file: .env
+    volumes:
+      - ./.cache:/app/.cache
+    init: true
+    mem_limit: 1g
+    cpus: 1
+    pids_limit: 64

@@ -69,17 +69,21 @@ class Snapshot:
 
 
 _rate_lock = threading.Lock()
-_last_request = 0.0
 
 
 class SecClient:
-    def __init__(self, user_agent: str, cache_path: Path):
+    def __init__(self, user_agent: str, cache_path: Path, *, offline=False):
         self.user_agent = validate_user_agent(user_agent)
-        cache_path.parent.mkdir(parents=True, exist_ok=True)
-        self.db = sqlite3.connect(cache_path, timeout=10)
-        self.db.execute("""CREATE TABLE IF NOT EXISTS snapshots (
-            url TEXT NOT NULL, sha256 TEXT NOT NULL, retrieved_at TEXT NOT NULL,
-            body BLOB NOT NULL, PRIMARY KEY (url, sha256, retrieved_at))""")
+        self.offline = offline
+        if offline:
+            self.db = sqlite3.connect(cache_path.resolve().as_uri() + "?mode=ro", uri=True, timeout=10)
+        else:
+            cache_path.parent.mkdir(parents=True, exist_ok=True)
+            self.db = sqlite3.connect(cache_path, timeout=10)
+            self.db.execute("""CREATE TABLE IF NOT EXISTS snapshots (
+                url TEXT NOT NULL, sha256 TEXT NOT NULL, retrieved_at TEXT NOT NULL,
+                body BLOB NOT NULL, PRIMARY KEY (url, sha256, retrieved_at))""")
+            self.db.execute("CREATE TABLE IF NOT EXISTS request_clock (id INTEGER PRIMARY KEY CHECK(id=1), reserved_at REAL NOT NULL)")
         self.opener = build_opener(SecRedirect())
         self.deadline = time.monotonic() + 180
         self.requests = 0
@@ -106,19 +110,34 @@ class SecClient:
         return Snapshot(data, url, row[1], row[0], "cache")
 
     def _wait_for_slot(self):
-        global _last_request
         with _rate_lock:
-            time.sleep(max(0, 0.5 - (time.monotonic() - _last_request)))
-            remaining = self.deadline - time.monotonic()
-            if remaining <= 0 or self.requests >= 24:
+            if time.monotonic() >= self.deadline or self.requests >= 24:
                 raise SecError("조회 한도(180초 또는 HTTP 요청 24회)에 도달했습니다.")
-            _last_request = time.monotonic()
+            # One shared cache reserves slots across worker processes on the same persistent volume.
+            with self.db:
+                self.db.execute("BEGIN IMMEDIATE")
+                previous = self.db.execute("SELECT reserved_at FROM request_clock WHERE id=1").fetchone()
+                now = time.time()
+                slot = max(now, previous[0] + 0.5 if previous else now)
+                delay = slot - now
+                if time.monotonic() + delay >= self.deadline:
+                    raise SecError("공유 SEC 요청 대기 중 시간 한도에 도달했습니다.")
+                self.db.execute("INSERT OR REPLACE INTO request_clock VALUES (1, ?)", (slot,))
+            time.sleep(delay)
+            remaining = self.deadline - time.monotonic()
+            if remaining <= 0:
+                raise SecError("공유 SEC 요청 대기 중 시간 한도에 도달했습니다.")
             self.requests += 1
             return min(15, remaining)
 
     def fetch(self, url: str, *, refresh=False) -> Snapshot:
         validate_url(url)
         cached = self._cached(url)
+        if self.offline:
+            if not cached:
+                raise SecError("동결 자료에 유효한 원문이 없어 보류합니다. 네트워크로 보충하지 않습니다.")
+            cached.source = "frozen"
+            return cached
         if cached and not refresh:
             age = datetime.now(timezone.utc) - datetime.fromisoformat(cached.retrieved_at)
             if 0 <= age.total_seconds() < 86400:

@@ -137,7 +137,7 @@ def calculate_growth(current: Metric, previous: Metric) -> Metric:
         context.prec = 28
         value = (cur.value / prev.value - 1) * 100
     return Metric(name="revenue_growth", status="PASS", value=value, unit="%",
-                  reason="최신 선택 공시에 함께 보고된 당기·전기 매출을 사용했습니다.",
+                  reason="해당 공시에 함께 보고된 당기·전기 매출을 사용했습니다.",
                   formula=f"({cur.value} / {prev.value} - 1) × 100", evidence=[cur, prev])
 
 
@@ -151,14 +151,14 @@ def analyze_company(ticker: str, name: str, filings: list[Filing], facts: dict,
         revenue = extract_metric(facts, filing, "revenue", sample=sample)
         income = extract_metric(facts, filing, "operating_income", sample=sample)
         metrics = [revenue, income, calculate_margin(revenue, income)]
-        if filing == selected[0]:
-            if len(selected) < 2 or not revenue.evidence:
-                growth = hold("revenue_growth", "당기·전기 매출 비교에 필요한 근거가 부족합니다.")
-            else:
-                previous = extract_metric(facts, filing, "revenue", sample=sample,
-                                          end=selected[1].report_date, tag=revenue.evidence[0].tag)
-                growth = calculate_growth(revenue, previous)
-            metrics.append(growth)
+        if not revenue.evidence:
+            growth = hold("revenue_growth", "당기·전기 매출 비교에 필요한 근거가 부족합니다.")
+        else:
+            current = revenue.evidence[0]
+            previous = extract_metric(facts, filing, "revenue", sample=sample,
+                                      end=current.start - timedelta(days=1), tag=current.tag)
+            growth = calculate_growth(revenue, previous)
+        metrics.append(growth)
         result.years.append(YearResult(filing=filing, metrics=metrics))
     return result
 

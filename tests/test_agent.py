@@ -103,3 +103,13 @@ def test_research_retries_stop_at_two(tmp_path, monkeypatch, report):
     final,_=run_fake(tmp_path,monkeypatch,actions,report)
     assert final.agent["status"]=="limited" and final.agent["counts"]["retries"]==2
     assert final.agent["counts"]["llm"]==5
+
+
+def test_numeric_only_request_can_finish_without_irrelevant_narrative_warning(tmp_path, monkeypatch, report):
+    report.request.query='매출과 영업이익률을 알려주세요.'
+    actions=[('research_financials',finance_args()),('finish_report',
+        {'stop_reason':'검증된 수치와 표 근거를 화면에 제공합니다.','claims':[],'holds':[]})]
+    final,_=run_fake(tmp_path,monkeypatch,actions,report)
+    assert final.agent['status']=='completed' and final.agent['counts']['llm']==2
+    assert final.companies[0].years[-1].metrics[2].status=='PASS'
+    assert not any('AI 사업 위험 설명을 보류' in text for text in final.warnings)

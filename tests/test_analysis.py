@@ -118,6 +118,22 @@ def test_missing_comparative_does_not_fall_back_to_older_filing(sample):
     assert result.years[-1].metrics[-1].status == "HOLD"
 
 
+def test_both_reporting_years_use_their_own_filing_comparatives(sample):
+    rows = revenue_rows(sample)
+    older_prior = {**rows[0], "start":"2023-01-01", "end":"2023-12-31", "val":80000000}
+    rows.append(older_prior)
+    filings = parse_filings(sample["submissions"], "9000000001", date(2026,3,1))
+    result = analyze_company("SAMPLE_A", "예제", filings, sample["companyfacts"], date(2026,3,1))
+    assert [len(y.metrics) for y in result.years] == [4,4]
+    assert [y.metrics[-1].value for y in result.years] == [Decimal("25"),Decimal("25")]
+    for year in result.years:
+        assert {e.filing.accession for e in year.metrics[-1].evidence} == {year.filing.accession}
+    older_prior["accn"] = filings[0].accession
+    result = analyze_company("SAMPLE_A", "예제", filings, sample["companyfacts"], date(2026,3,1))
+    assert result.years[0].metrics[-1].status == "HOLD"
+    assert result.years[-1].metrics[-1].status == "PASS"
+
+
 def test_nonconsecutive_growth_periods_and_zero_previous_revenue_hold(sample, latest):
     current = extract_metric(sample["companyfacts"], latest, "revenue")
     previous = extract_metric(sample["companyfacts"], latest, "revenue", end=date(2024, 12, 31))

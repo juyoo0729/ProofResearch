@@ -1,6 +1,8 @@
 import hashlib
 import io
 import json
+import multiprocessing
+import time
 from datetime import datetime, timedelta, timezone
 from urllib.error import HTTPError, URLError
 
@@ -143,3 +145,56 @@ def test_archive_html_cache_and_exact_response_address(client, monkeypatch):
 def test_archive_address_allowlist(url):
     with pytest.raises(SecError):
         validate_url(url)
+
+
+def test_frozen_cache_never_fetches_or_changes_even_when_refresh_requested(tmp_path, monkeypatch):
+    path = tmp_path / "frozen.db"
+    with SecClient(AGENT, path) as client:
+        body = b'{"cik":2488}'
+        client.db.execute("INSERT INTO snapshots VALUES (?, ?, ?, ?)",
+                          (URL, hashlib.sha256(body).hexdigest(), "2020-01-01T00:00:00+00:00", body))
+        client.db.commit()
+    digest = hashlib.sha256(path.read_bytes()).hexdigest()
+    with SecClient(AGENT, path, offline=True) as client:
+        monkeypatch.setattr(client.opener, "open", lambda *a, **k: pytest.fail("frozen evaluation made an HTTP request"))
+        assert client.fetch(URL, refresh=True).source == "frozen"
+        with pytest.raises(SecError, match="동결"):
+            client.fetch(ARCHIVE)
+    assert hashlib.sha256(path.read_bytes()).hexdigest() == digest
+
+
+def reserve_in_process(path, connection):
+    with SecClient(AGENT, path) as client:
+        client._wait_for_slot()
+        connection.send(time.monotonic())
+    connection.close()
+
+
+def test_sec_slots_are_shared_between_spawned_workers(tmp_path):
+    context=multiprocessing.get_context('spawn')
+    path=tmp_path/'shared.db'
+    with SecClient(AGENT,path):
+        pass
+    workers=[]
+    for _ in range(3):
+        receiver,sender=context.Pipe(duplex=False)
+        process=context.Process(target=reserve_in_process,args=(path,sender))
+        process.start()
+        sender.close()
+        workers.append((process,receiver))
+    slots=[]
+    try:
+        for process,receiver in workers:
+            assert receiver.poll(10)
+            slots.append(receiver.recv())
+            process.join(5)
+            assert process.exitcode==0
+        slots.sort()
+        assert all(b-a>=0.40 for a,b in zip(slots,slots[1:]))
+        assert slots[-1]-slots[0]>=0.90
+    finally:
+        for process,receiver in workers:
+            if process.is_alive():
+                process.terminate()
+                process.join(5)
+            receiver.close()

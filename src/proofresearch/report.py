@@ -110,7 +110,7 @@ main{max-width:1120px;margin:auto;padding:36px;background:white}h1{font-size:32p
                     mi, metric = metrics[name]
                     pieces.append(f'<td><a href="#m{ci}-{yi}-{mi}">{e(display_value(metric))}</a></td>')
             pieces.append("</tr>")
-    pieces.append("</tbody></table></div><p><small>직전 연도의 증가율은 전전기 공시가 대상 밖이므로 표시하지 않습니다. USD 원단위, 비율은 소수 둘째 자리 표시입니다.</small></p><h2>수치 해석</h2>")
+    pieces.append("</tbody></table></div><p><small>각 기간의 증가율은 같은 공시에 함께 보고된 전기 매출로 계산합니다. 전기 근거가 없으면 보류합니다. USD 원단위, 비율은 소수 둘째 자리 표시입니다.</small></p><h2>수치 해석</h2>")
     pieces.extend(f"<p>{e(text)}</p>" for text in financial_interpretations(report))
     if report.agent:
         pieces.append(f"<p>AI 실행 상태: {e(report.agent.get('status'))} / {e(report.agent.get('stop_reason', ''))}</p>")

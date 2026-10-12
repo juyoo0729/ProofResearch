@@ -4,3 +4,6 @@
 *.toml text eol=lf
 *.yml text eol=lf
 *.json text eol=lf
+# Frozen evaluation fingerprints include original newline bytes.
+evaluation/gold.json -text whitespace=cr-at-eol
+evaluation/corpus.json -text whitespace=cr-at-eol

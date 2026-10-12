@@ -59,10 +59,14 @@ class SourceIndex:
     def search(self, query: str, scope: dict[str, set[str]], *, per_company=2) -> list[Paragraph]:
         if not query.strip() or len(query) > 240 or not 1 <= per_company <= 3:
             raise ValueError("검색어와 검색 개수를 확인하세요.")
-        terms = list(dict.fromkeys(re.findall(r"[a-zA-Z]{3,30}", query.lower())))[:16]
-        for korean, english in {"위험": "risk", "수출": "export", "규제": "regulatory", "공급": "supply", "경쟁": "competition", "수요": "demand"}.items():
+        company_names = {name for ticker in scope for name in {'AMD': ('amd',), 'INTC': ('intel','intc'), 'NVDA': ('nvidia','nvda')}.get(ticker, ())}
+        terms = [term for term in dict.fromkeys(re.findall(r"[a-zA-Z]{3,30}", query.lower())) if term not in company_names][:16]
+        for korean, english in {"위험": "risk", "수출": "export", "규제": "regulatory", "공급": "supply suppliers",
+                               "경쟁": "competition competitive competitors", "수요": "demand", "제조": "manufacturing manufacture",
+                               "의존": "dependency suppliers", "관세": "tariffs", "기술": "technology", "경기": "cyclical",
+                               "가격": "pricing prices", "무역": "trade", "파운드리": "foundries foundry"}.items():
             if korean in query:
-                terms.append(english)
+                terms.extend(english.split())
         if not terms:
             return []
         match = " OR ".join('"' + term + '"' for term in dict.fromkeys(terms))
