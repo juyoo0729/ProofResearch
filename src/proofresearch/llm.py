@@ -153,8 +153,8 @@ class OpenAIClient:
                    "reasoning": {"effort": "low"}, "store": False, "service_tier": "default",
                    "include": ["reasoning.encrypted_content"]}
         body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
-        # UTF-8 bytes plus framing is a conservative token bound for this text-only request.
-        input_bound = len(body) + 4096
+        # Include a bound for replayed reasoning, whose encrypted form can be shorter than its token count.
+        input_bound = len(body) + 4096 + 6 * MAX_OUTPUT_TOKENS
         if input_bound > 200_000:
             raise LimitReached("근거와 대화 길이가 입력 한도를 초과했습니다.")
         call_id = self.ledger.reserve(self.run_id, input_bound)
