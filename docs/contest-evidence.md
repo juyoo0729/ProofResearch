@@ -9,7 +9,7 @@
 | 문제 정의·주제 적합성 | 20 | README의 공시 재확인 업무와 기간/계정 비교 제약 | 담당자의 실제 검토·수정 시간 측정 |
 | Agent 구성·설계 | 25 | agent.py, [계획·도구 선택·재탐색 실행 기록](demos.md) | 동결 질의에서 재탐색 효과 평가 |
 | 차별성·창의성 | 20 | 원문 위치·Decimal·조건 불일치 보류, [세 방법 비교와 실패](evaluation-results.md) | 동결 비교 실행 중 40회 잔액 오류; 합격 후 별도 재평가 |
-| 실현 가능성 | 20 | 실제 SEC·GPT 분석, Windows 로컬 자동 검사 119개, Windows·Linux CI와 [Docker·장부 보존 확인](deployment.md) | Docker 새 유료 실행과 외부 데모 검증 |
+| 실현 가능성 | 20 | 실제 SEC·GPT 분석, Windows 로컬 자동 검사 121개, Windows·Linux CI와 [Docker·장부 보존 확인](deployment.md) | Docker 새 유료 실행과 외부 데모 검증 |
 | 활용성·확장성 | 15 | 한국어 입력·결과 탭·원문 근거·HTML/CSV/실행 기록 | [실제 사용자 검토와 업무 효용 측정](user-study.md) |
 
 ## 본선 평가

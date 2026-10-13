@@ -1,5 +1,6 @@
 import argparse
 import os
+import sqlite3
 import sys
 from datetime import date
 from pathlib import Path
@@ -32,6 +33,9 @@ def main():
             as_of=args.as_of or (date(2026, 3, 1) if args.mode == "sample" else date.today()), query=args.query)
         report = (run_agent if args.agent else run_research)(request, user_agent=os.environ.get("SEC_USER_AGENT", ""))
         folder = save_report(report, args.output)
+    except sqlite3.DatabaseError:
+        print("실행 실패: 데이터 저장소를 읽거나 쓰지 못했습니다. 폴더 권한·디스크 공간과 저장소 상태를 확인한 뒤 다시 시도하세요.", file=sys.stderr)
+        return 1
     except (ValidationError, SecError, AgentError, OSError) as error:
         print(f"실행 실패: {error}", file=sys.stderr)
         return 1
