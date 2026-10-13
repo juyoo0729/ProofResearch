@@ -34,6 +34,13 @@ class ResearchRequest(Model):
     as_of: date
     query: str = Field(default="매출과 수익성의 변화, 비교 제약과 주요 사업 위험을 근거와 함께 설명해 주세요.", min_length=1, max_length=1000)
 
+    @field_validator("query")
+    @classmethod
+    def check_query(cls, value):
+        if not value.strip():
+            raise ValueError("공백만으로는 분석할 수 없습니다.")
+        return value
+
     @field_validator("tickers")
     @classmethod
     def normalize_tickers(cls, value):

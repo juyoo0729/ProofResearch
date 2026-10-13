@@ -153,6 +153,7 @@ def test_malformed_parallel_submission_arrays_are_rejected(sample):
 @pytest.mark.parametrize("kwargs", [
     {"tickers": []}, {"tickers": ["SAMPLE_A", "sample_a"]}, {"tickers": ["AMD"]},
     {"mode": "sec", "tickers": ["UNKNOWN"]}, {"as_of": date.today() + timedelta(days=1)},
+    {"query": " \n\t "}, {"query": "\u00a0\u3000"},
 ])
 def test_request_boundary_validation(kwargs):
     args = {"tickers": ["SAMPLE_A"], "as_of": date(2026, 3, 1), **kwargs}
