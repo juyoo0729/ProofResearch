@@ -86,7 +86,7 @@ def render_html(report: RunReport) -> str:
 :root{color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#edf3fa;color:#17314d;font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;line-height:1.7}
 main{max-width:1120px;margin:auto;padding:36px;background:white}h1{font-size:32px;line-height:1.3}h2{margin-top:36px}p{max-width:78ch}a{color:#195cb0}a:focus-visible{outline:3px solid #a66a00;outline-offset:3px}
 .notice{border-left:4px solid #a66a00;padding:12px 18px;background:#fff6dd}.pass{border-left-color:#195cb0;background:#edf3fa}.scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:12px;text-align:left;border-bottom:1px solid #ccd9e8;white-space:nowrap}th{background:#edf3fa}td{font-variant-numeric:tabular-nums}
-.metric{border-top:1px solid #ccd9e8;padding:12px 0}code{overflow-wrap:anywhere}small{color:#405974}li{margin-bottom:8px}@media(max-width:640px){main{padding:20px}h1{font-size:26px}}@media print{body{background:white}main{padding:0}.scroll{overflow:visible}table{font-size:10px}td,th{padding:5px}a{color:inherit}}
+.metric{border-top:1px solid #ccd9e8;padding:12px 0}code{overflow-wrap:anywhere}pre{white-space:pre-wrap;overflow-wrap:anywhere}small{color:#405974}li{margin-bottom:8px}@media(max-width:640px){main{padding:20px}h1{font-size:26px}}@media print{body{background:white}main{padding:0}.scroll{overflow:visible}table{font-size:10px}td,th{padding:5px}a{color:inherit}}
 </style></head><body><main><p>ProofResearch</p><h1>공시 근거를 함께 읽는 기업 비교</h1>"""]
     pieces.append(f"<p>기준일 {e(report.request.as_of)} / 실행 {e(report.run_id)}<br>작성 시각 {e(report.created_at.isoformat())}</p>")
     pieces.append(f"<p>질의: {e(report.request.query)}</p>")
